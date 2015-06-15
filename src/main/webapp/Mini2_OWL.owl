@@ -1,0 +1,1195 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/semanticOrg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/semanticOrg">
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#Abteilung"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Abteilungsleiter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#B-Führerschein"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BAU_Projekt"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Bereich"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Bereichsleiter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CentralEurope"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Communication"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DHV"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DMB"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DMB1"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DMB2"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DMB3"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DMBE"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DMBLT"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DMBLWS"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DMBPPL"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DMBSM"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DMBT"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DokaDrevo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ECDL-Führerschein"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ENTW_Projekt"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EastAsiaPacific"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EasternEurope"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Einkauf"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Engineering"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Experte"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FacilityManagement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FinanceControlling"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Führungskraft"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GKneu"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Geschlecht"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HumanResource"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IT_Projekt"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InformationTechnology"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InternalAudit"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Junior"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LatinAmerica"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LegalPublicAffairs"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Marketing"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MiddleEast"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Mining"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Mitarbeiter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Männlich"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NorthAmerica"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Operations"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Organisation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Organisationseinheit"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProductManagement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Projekt"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProjektController"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Projektleiter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Projektmitarbeiter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Qualifikation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RD"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ReleaseERP"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#STRAT_Projekt"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Sales"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Schreibkraft"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Senior"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SouthernEuropeAfrika"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Sparte"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Staplerfahrer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Staplerschein"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SupplyChainManagement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Unterbezahlt"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Verkäufer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Vorstand"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Weiblich"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WesternEurope"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Wissensmanagement"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Organisation"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Projekt"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#arbeitetAnProjekt"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#führt"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#gehörtZu"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hatALeiter"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hatAbteilung"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hatBLeiter"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hatBereich"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hatGDirektor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hatGLeiter"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hatMitarbeiter"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hatOELeiter"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hatPLeiter"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hatQualifikation"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hatSLeiter"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hatVorgesetzten"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#istExperte"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#istJunior"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#istSenior"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#istTeilvon"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#kontrolliertProjekt"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#leitetProjekt"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#AnzahlMitarbeiter"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#Beschreibung"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#Eintrittsdatum"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#Erfahrungsjahre"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#Gehalt"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hatEmailAdresse"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Abt001"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Abt002"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Aigner_Roman"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Baumgartner_Erich"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Bereich_Finance_Bau"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Bereich_Finance_Metal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Bereich_RD_Bau"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Bereich_RD_Metal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Burgstaller_Andreas"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Dr.AndreasLudwig"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Ebner_Matthias"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ForschungsSparte"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Helmberger_Peter"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Hillinger_Werner"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Hofschweiger_Helmut"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#James"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Kaltenbrunner_Daniel"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Kastenhofer_Robert"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#König_Kurt"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Leitner_Patrick"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Lettner_Christian"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Löcker_Bern"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Mayr_Christian"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Obiegli_Jürgen"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PR_BAU_Hochhaus_DeutscheBank"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PR_ENTW_NeueAntriebe"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PR_IT_Einführung_SemanticSearch"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PR_STRAT_DalaiLama"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Palmetshofer_Christoph"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Pekarek_Ludwig"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Pfaffeneder_Wolfgang"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Pum_Christian"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Reicher_Augustin"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Ritt_Herbert"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Roseneder_Eva"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Rothenburger_Benjamin"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#STSchein001"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Schoder_Hubert"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Seiler_Franz"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Sparte_Bau"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Sparte_Metal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Spitzer_Rainer"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Stefan_Martin"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Strunz_Johann"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Sulzberger_Wolfram"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Weiß_Patrick"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Zibula_Harald"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#Abteilungsleiter"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#istVorgesetzterVon"/>
+            <Class IRI="#Mitarbeiter"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Bereichsleiter"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#istVorgesetzterVon"/>
+            <Class IRI="#Abteilungsleiter"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Experte"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#Erfahrungsjahre"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="&xsd;minExclusive">
+                    <Literal datatypeIRI="&xsd;integer">6</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Junior"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#Erfahrungsjahre"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="&xsd;maxInclusive">
+                    <Literal datatypeIRI="&xsd;integer">2</Literal>
+                </FacetRestriction>
+                <FacetRestriction facet="&xsd;minInclusive">
+                    <Literal datatypeIRI="&xsd;integer">0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ProjektController"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#kontrolliertProjekt"/>
+            <Class IRI="#Projekt"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Projektleiter"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Mitarbeiter"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#leitetProjekt"/>
+                <Class IRI="#Projekt"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Projektmitarbeiter"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Mitarbeiter"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#arbeitetAnProjekt"/>
+                <Class IRI="#Projekt"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Schreibkraft"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hatQualifikation"/>
+            <Class IRI="#ECDL-Führerschein"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Senior"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#Erfahrungsjahre"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="&xsd;maxInclusive">
+                    <Literal datatypeIRI="&xsd;integer">6</Literal>
+                </FacetRestriction>
+                <FacetRestriction facet="&xsd;minInclusive">
+                    <Literal datatypeIRI="&xsd;integer">3</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Staplerfahrer"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hatQualifikation"/>
+            <Class IRI="#Staplerschein"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Unterbezahlt"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#leitetProjekt"/>
+                <Class IRI="#Projekt"/>
+            </ObjectSomeValuesFrom>
+            <DataExactCardinality cardinality="1">
+                <DataProperty IRI="#Gehalt"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="&xsd;maxExclusive">
+                        <Literal datatypeIRI="&xsd;integer">3000</Literal>
+                    </FacetRestriction>
+                    <FacetRestriction facet="&xsd;minExclusive">
+                        <Literal datatypeIRI="&xsd;integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataExactCardinality>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Verkäufer"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hatQualifikation"/>
+            <Class IRI="#B-Führerschein"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Vorstand"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#istVorgesetzterVon"/>
+            <Class IRI="#Bereichsleiter"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#Abteilung"/>
+        <Class IRI="#Organisationseinheit"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Abteilungsleiter"/>
+        <Class IRI="#Mitarbeiter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#B-Führerschein"/>
+        <Class IRI="#Qualifikation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BAU_Projekt"/>
+        <Class IRI="#Projekt"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Bereich"/>
+        <Class IRI="#Organisationseinheit"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Bereichsleiter"/>
+        <Class IRI="#Mitarbeiter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CentralEurope"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Communication"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DHV"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DMB"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DMB1"/>
+        <Class IRI="#Abteilung"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DMB2"/>
+        <Class IRI="#Abteilung"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DMB3"/>
+        <Class IRI="#Abteilung"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DMBE"/>
+        <Class IRI="#Abteilung"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DMBLT"/>
+        <Class IRI="#Abteilung"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DMBLWS"/>
+        <Class IRI="#Abteilung"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DMBPPL"/>
+        <Class IRI="#Abteilung"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DMBSM"/>
+        <Class IRI="#Abteilung"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DMBT"/>
+        <Class IRI="#Abteilung"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DokaDrevo"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ECDL-Führerschein"/>
+        <Class IRI="#Qualifikation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ENTW_Projekt"/>
+        <Class IRI="#Projekt"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EastAsiaPacific"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EasternEurope"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Einkauf"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Engineering"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FacilityManagement"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FinanceControlling"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GKneu"/>
+        <Class IRI="#Projekt"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HumanResource"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IT_Projekt"/>
+        <Class IRI="#Projekt"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InformationTechnology"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InternalAudit"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LatinAmerica"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LegalPublicAffairs"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Marketing"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MiddleEast"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Mining"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NorthAmerica"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Operations"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProductManagement"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProjektController"/>
+        <Class IRI="#Mitarbeiter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RD"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ReleaseERP"/>
+        <Class IRI="#Projekt"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#STRAT_Projekt"/>
+        <Class IRI="#Projekt"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Sales"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Schreibkraft"/>
+        <Class IRI="#Mitarbeiter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SouthernEuropeAfrika"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Sparte"/>
+        <Class IRI="#Organisationseinheit"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Staplerfahrer"/>
+        <Class IRI="#Mitarbeiter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Staplerschein"/>
+        <Class IRI="#Qualifikation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SupplyChainManagement"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Verkäufer"/>
+        <Class IRI="#Mitarbeiter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Vorstand"/>
+        <Class IRI="#Mitarbeiter"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WesternEurope"/>
+        <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Wissensmanagement"/>
+        <Class IRI="#Projekt"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="#Abteilung"/>
+        <NamedIndividual IRI="#Abt001"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Abteilung"/>
+        <NamedIndividual IRI="#Abt002"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Aigner_Roman"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#FinanceControlling"/>
+        <NamedIndividual IRI="#Bereich_Finance_Bau"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#FinanceControlling"/>
+        <NamedIndividual IRI="#Bereich_Finance_Metal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RD"/>
+        <NamedIndividual IRI="#Bereich_RD_Bau"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RD"/>
+        <NamedIndividual IRI="#Bereich_RD_Metal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Burgstaller_Andreas"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Ebner_Matthias"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Hofschweiger_Helmut"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Kaltenbrunner_Daniel"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Kastenhofer_Robert"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Leitner_Patrick"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Lettner_Christian"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BAU_Projekt"/>
+        <NamedIndividual IRI="#PR_BAU_Hochhaus_DeutscheBank"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ENTW_Projekt"/>
+        <NamedIndividual IRI="#PR_ENTW_NeueAntriebe"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#IT_Projekt"/>
+        <NamedIndividual IRI="#PR_IT_Einführung_SemanticSearch"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#STRAT_Projekt"/>
+        <NamedIndividual IRI="#PR_STRAT_DalaiLama"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Palmetshofer_Christoph"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Pfaffeneder_Wolfgang"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Rothenburger_Benjamin"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Staplerschein"/>
+        <NamedIndividual IRI="#STSchein001"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Schoder_Hubert"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Seiler_Franz"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Sparte"/>
+        <NamedIndividual IRI="#Sparte_Bau"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Sparte"/>
+        <NamedIndividual IRI="#Sparte_Metal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Stefan_Martin"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Sulzberger_Wolfram"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mitarbeiter"/>
+        <NamedIndividual IRI="#Weiß_Patrick"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
+        <NamedIndividual IRI="#Dr.AndreasLudwig"/>
+        <NamedIndividual IRI="#Weiß_Patrick"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
+        <NamedIndividual IRI="#Helmberger_Peter"/>
+        <NamedIndividual IRI="#Pum_Christian"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
+        <NamedIndividual IRI="#Helmberger_Peter"/>
+        <NamedIndividual IRI="#Reicher_Augustin"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
+        <NamedIndividual IRI="#Helmberger_Peter"/>
+        <NamedIndividual IRI="#Ritt_Herbert"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#leitetProjekt"/>
+        <NamedIndividual IRI="#Helmberger_Peter"/>
+        <NamedIndividual IRI="#PR_IT_Einführung_SemanticSearch"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#arbeitetAnProjekt"/>
+        <NamedIndividual IRI="#James"/>
+        <NamedIndividual IRI="#PR_IT_Einführung_SemanticSearch"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
+        <NamedIndividual IRI="#James"/>
+        <NamedIndividual IRI="#Mayr_Christian"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hatQualifikation"/>
+        <NamedIndividual IRI="#Pum_Christian"/>
+        <NamedIndividual IRI="#STSchein001"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hatBereich"/>
+        <NamedIndividual IRI="#Sparte_Bau"/>
+        <NamedIndividual IRI="#Bereich_RD_Bau"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hatBereich"/>
+        <NamedIndividual IRI="#Sparte_Bau"/>
+        <NamedIndividual IRI="#Bereich_Finance_Bau"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hatBereich"/>
+        <NamedIndividual IRI="#Sparte_Metal"/>
+        <NamedIndividual IRI="#Bereich_Finance_Metal"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hatBereich"/>
+        <NamedIndividual IRI="#Sparte_Metal"/>
+        <NamedIndividual IRI="#Bereich_RD_Metal"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
+        <NamedIndividual IRI="#Weiß_Patrick"/>
+        <NamedIndividual IRI="#Helmberger_Peter"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
+        <NamedIndividual IRI="#Weiß_Patrick"/>
+        <NamedIndividual IRI="#Kaltenbrunner_Daniel"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Erfahrungsjahre"/>
+        <NamedIndividual IRI="#Dr.AndreasLudwig"/>
+        <Literal datatypeIRI="&xsd;integer">12</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Gehalt"/>
+        <NamedIndividual IRI="#Helmberger_Peter"/>
+        <Literal datatypeIRI="&xsd;integer">1000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Beschreibung"/>
+        <NamedIndividual IRI="#James"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">James Bond Mitarbeiter</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Erfahrungsjahre"/>
+        <NamedIndividual IRI="#James"/>
+        <Literal datatypeIRI="&xsd;integer">10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Gehalt"/>
+        <NamedIndividual IRI="#James"/>
+        <Literal datatypeIRI="&xsd;integer">5000</Literal>
+    </DataPropertyAssertion>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Organisation"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Projekt"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#führt"/>
+        <ObjectProperty IRI="#Projekt"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hatALeiter"/>
+        <ObjectProperty IRI="#Organisation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hatAbteilung"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hatBLeiter"/>
+        <ObjectProperty IRI="#Organisation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hatBereich"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hatGDirektor"/>
+        <ObjectProperty IRI="#Organisation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hatGLeiter"/>
+        <ObjectProperty IRI="#Organisation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hatMitarbeiter"/>
+        <ObjectProperty IRI="#Organisation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hatOELeiter"/>
+        <ObjectProperty IRI="#Organisation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hatPLeiter"/>
+        <ObjectProperty IRI="#Organisation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hatSLeiter"/>
+        <ObjectProperty IRI="#Organisation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hatVorgesetzten"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#istExperte"/>
+        <ObjectProperty IRI="#hatQualifikation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#istJunior"/>
+        <ObjectProperty IRI="#hatQualifikation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#istSenior"/>
+        <ObjectProperty IRI="#hatQualifikation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#istTeilvon"/>
+        <ObjectProperty IRI="#Projekt"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#kontrolliertProjekt"/>
+        <ObjectProperty IRI="#arbeitetAnProjekt"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#leitetProjekt"/>
+        <ObjectProperty IRI="#arbeitetAnProjekt"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hatVorgesetzten"/>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
+    </InverseObjectProperties>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#gehörtZu"/>
+    </SymmetricObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#arbeitetAnProjekt"/>
+        <Class IRI="#Mitarbeiter"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hatAbteilung"/>
+        <Class IRI="#Bereich"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hatBereich"/>
+        <Class IRI="#Sparte"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hatVorgesetzten"/>
+        <Class IRI="#Mitarbeiter"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#arbeitetAnProjekt"/>
+        <Class IRI="#Projekt"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hatAbteilung"/>
+        <Class IRI="#Abteilung"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hatBereich"/>
+        <Class IRI="#Bereich"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hatQualifikation"/>
+        <Class IRI="#Qualifikation"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hatVorgesetzten"/>
+        <Class IRI="#Mitarbeiter"/>
+    </ObjectPropertyRange>
+    <DisjointObjectProperties>
+        <ObjectProperty IRI="#kontrolliertProjekt"/>
+        <ObjectProperty IRI="#leitetProjekt"/>
+    </DisjointObjectProperties>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#Gehalt"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <DataPropertyDomain>
+        <DataProperty IRI="#Eintrittsdatum"/>
+        <Class IRI="#Mitarbeiter"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#Beschreibung"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#Eintrittsdatum"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#Erfahrungsjahre"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#Gehalt"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hatEmailAdresse"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
