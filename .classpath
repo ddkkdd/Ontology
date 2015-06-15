@@ -19,19 +19,19 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/HermiT.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/org.semanticweb.HermiT.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/owlapi-api-3.4.3.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/owlapi-api-3.4.3-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/owlapi-apibinding-3.4.3.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/owlapi-apibinding-3.4.3-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/owlapi-contract-3.4.3.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/owlapi-contract-3.4.3-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/owlapi-impl-3.4.3.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/owlapi-impl-3.4.3-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/owlapi-parsers-3.4.3.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/owlapi-parsers-3.4.3-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/owlapi-tools-3.4.3.jar"/>
-	<classpathentry kind="lib" path="C:/Java/hermite/owlapi-tools-3.4.3-sources.jar"/>
+	<classpathentry kind="lib" path="HermiT.jar"/>
+	<classpathentry kind="lib" path="org.semanticweb.HermiT.jar"/>
+	<classpathentry kind="lib" path="owlapi-api-3.4.3-sources.jar"/>
+	<classpathentry kind="lib" path="owlapi-api-3.4.3.jar"/>
+	<classpathentry kind="lib" path="owlapi-apibinding-3.4.3-sources.jar"/>
+	<classpathentry kind="lib" path="owlapi-apibinding-3.4.3.jar"/>
+	<classpathentry kind="lib" path="owlapi-contract-3.4.3-sources.jar"/>
+	<classpathentry kind="lib" path="owlapi-contract-3.4.3.jar"/>
+	<classpathentry kind="lib" path="owlapi-impl-3.4.3-sources.jar"/>
+	<classpathentry kind="lib" path="owlapi-impl-3.4.3.jar"/>
+	<classpathentry kind="lib" path="owlapi-parsers-3.4.3-sources.jar"/>
+	<classpathentry kind="lib" path="owlapi-parsers-3.4.3.jar"/>
+	<classpathentry kind="lib" path="owlapi-tools-3.4.3-sources.jar"/>
+	<classpathentry kind="lib" path="owlapi-tools-3.4.3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
