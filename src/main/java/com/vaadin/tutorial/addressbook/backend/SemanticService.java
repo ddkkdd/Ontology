@@ -152,7 +152,7 @@ public class SemanticService {
 		Set<OWLNamedIndividual> individuals = reasoner.getInstances(Thing,
 				false).getFlattened();
 
-		System.out.println("hallo");
+		
 		System.out.println("Anzahl: " + individuals.size());
 		long j = 0;
 		boolean isMA = false;
@@ -201,13 +201,7 @@ public class SemanticService {
 				for (OWLClass c : s) {
 					classes.add(c.toString());
 
-					System.out.println("NAVAX");
-					System.out.println(c.toString());
-					System.out
-							.println("<http://www.semanticweb.org/semanticOrg#Mitarbeiter>");
-					isMA = isMA
-							| c.toString()
-									.equals("<http://www.semanticweb.org/semanticOrg#Mitarbeiter>");
+					isMA = isMA | c.toString().equals("<http://www.semanticweb.org/semanticOrg#Mitarbeiter>");
 
 				}
 			}
@@ -226,7 +220,7 @@ public class SemanticService {
 	}
 
 	public synchronized List<Mitarbeiter> findAllMA(String stringFilter) {
-		System.out.println("PEHE TEST");
+		
 		ArrayList<Mitarbeiter> arrayList = new ArrayList<Mitarbeiter>();
 		for (Mitarbeiter i : mitarbeiter.values()) {
 			System.out.println(i);
