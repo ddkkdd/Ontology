@@ -10,6 +10,7 @@ import org.semanticweb.owlapi.reasoner.NodeSet;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -129,6 +130,26 @@ public class Individual implements Serializable, Cloneable {
 		return "Individual [id=" + id + ", individualName=" + individualName
 				+ ", dataProperties=" + dataProperties + ", objectProperties="
 				+ objectProperties + ", classes=" + classes + "]";
+	}
+
+	public List<String> getIndividualByProperty(String pname) {
+		List<String> al = new ArrayList<String>();
+		
+		for ( OWLConcept it : objectProperties){
+			if (it.getName().equals(pname)){
+				al.add(it.getValue());
+			}
+		}
+		return al;
+		
+	}
+
+	public String getIndividualName() {
+		return individualName;
+	}
+
+	public void setIndividualName(String individualName) {
+		this.individualName = individualName;
 	}
 
 }

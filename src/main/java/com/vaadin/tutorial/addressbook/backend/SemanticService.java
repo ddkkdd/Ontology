@@ -50,9 +50,20 @@ public class SemanticService {
 	public static void main(String[] args) throws OWLException, IOException {
 		createDemoService();
 		
-		for (Individual it : instance.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Organisationseinheit>")){
+//		for (Individual it : instance.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Organisationseinheit>")){
+//			System.out.println(it.toString());
+//		}
+		
+		for (Individual it : instance.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Sparte>")){
 			System.out.println(it.toString());
 		}
+		
+		for (String s : instance.getIndividualByProperty("<http://www.semanticweb.org/semanticOrg#Southern_Europe>", 
+														"<http://www.semanticweb.org/semanticOrg#hatBereich>")){
+			System.out.println(s);
+		}
+		
+		
 		
 	}
 
@@ -271,11 +282,19 @@ public class SemanticService {
 			if (s.getValue().isClassMember(classname)) {
 				classIndividuals.add(s.getValue());
 			}
-
 		}
-
 		return classIndividuals;
-
 	}
-
+	
+	public List<String> getIndividualByProperty(String iri, String pname) {
+		// private HashMap<Long, Individual> individuals = new HashMap<>();
+		//List<Individual> pIndividuals = new ArrayList<>();
+		
+		for (Individual i : individuals.values()){
+			if (i.getIndividualName().equals(iri)){
+				return i.getIndividualByProperty(pname);
+			}
+		}	
+		return null;	
+	}
 }
