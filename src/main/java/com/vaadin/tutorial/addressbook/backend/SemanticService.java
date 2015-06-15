@@ -22,6 +22,7 @@ import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 
+import com.vaadin.server.VaadinService;
 import com.vaadin.ui.CustomField;
 
 import java.io.File;
@@ -117,9 +118,11 @@ public class SemanticService {
 	}
 
 	public static void loadOntology() throws OWLOntologyCreationException {
+		//System.out.println(VaadinService.getCurrent().getBaseDirectory().toString());
+		
 		OWLOntologyManager m = OWLManager.createOWLOntologyManager();
 
-		String file = "Mini2_OWL.owl";
+		String file = "c:\\temp\\Mini2_OWL.owl";
 		OWLOntology o = m.loadOntologyFromOntologyDocument(new File(file));
 
 		OWLReasoner reasoner = new Reasoner(o);
