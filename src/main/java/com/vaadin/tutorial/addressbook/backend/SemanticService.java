@@ -139,7 +139,9 @@ public class SemanticService {
 		OWLOntologyManager m = OWLManager.createOWLOntologyManager();
 
 		// String file = "/Mini2_OWL.owl";
-		String file = "C:\\Users\\Peter\\Dropbox\\SemTech SS15\\Miniprojekt 2\\Mini2_OWL.owl";
+		//String file = "C:\\Users\\Peter\\Dropbox\\SemTech SS15\\Miniprojekt 2\\Mini2_OWL.owl";
+		String file = "/Users/Daniel/Dropbox/SemTech SS15/Miniprojekt 2/Mini2_OWL.owl";
+		
 		OWLOntology o = m.loadOntologyFromOntologyDocument(new File(file));
 
 		OWLReasoner reasoner = new Reasoner(o);
