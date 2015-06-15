@@ -18,12 +18,15 @@ import com.vaadin.tutorial.addressbook.backend.Contact;
 import com.vaadin.tutorial.addressbook.backend.ContactService;
 import com.vaadin.tutorial.addressbook.backend.Individual;
 import com.vaadin.tutorial.addressbook.backend.Mitarbeiter;
+import com.vaadin.tutorial.addressbook.backend.OWLConcept;
 import com.vaadin.tutorial.addressbook.backend.SemanticService;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Tree.CollapseEvent;
 import com.vaadin.ui.Tree.ExpandEvent;
 
 import javax.servlet.annotation.WebServlet;
+
+import org.semanticweb.owlapi.model.OWLIndividual;
 
 /* User Interface written in Java.
  *
@@ -44,7 +47,7 @@ public class AddressbookUI extends UI {
     
     MyTree tree = new MyTree();
     List<String> sparteList = new LinkedList<String>();
-    List<String> bereichList = new LinkedList<String>();
+    Map<String, String> bereichList = new HashMap<String, String>();
     
     
     // ContactService is a in-memory mock DAO that mimics
@@ -83,12 +86,17 @@ public class AddressbookUI extends UI {
         	sparteList.add((String) temp[1].subSequence(0, temp[1].length()-1));
 		}
 		
+       	
         for (Individual it : semService.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Bereich>")){
-        	String[] temp = it.getIndividualName().split("#");
-        	bereichList.add((String) temp[1].subSequence(0, temp[1].length()-1));
-        	System.out.println(temp[1]);
-        }
-        
+			//System.out.println(it.getIndividualName());
+        	for (OWLConcept concept: it.getObjectProperties()){
+						
+				bereichList.put(it.getIndividualName(), concept.getValue());
+				
+				System.out.println(it.getIndividualName()+"\n");
+				System.out.println(concept.getValue()+"\n");
+			}
+		}
     }
 
     private void buildLayout() {
