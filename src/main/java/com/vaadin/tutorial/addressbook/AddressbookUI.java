@@ -15,6 +15,8 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.tutorial.addressbook.backend.Contact;
 import com.vaadin.tutorial.addressbook.backend.ContactService;
+import com.vaadin.tutorial.addressbook.backend.Mitarbeiter;
+import com.vaadin.tutorial.addressbook.backend.SemanticService;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Tree.CollapseEvent;
 import com.vaadin.ui.Tree.ExpandEvent;
@@ -55,7 +57,8 @@ public class AddressbookUI extends UI {
     // ContactService is a in-memory mock DAO that mimics
     // a real-world datasource. Typically implemented for
     // example as EJB or Spring Data based service.
-    ContactService service = ContactService.createDemoService();
+    //ContactService service = ContactService.createDemoService();
+    SemanticService semService = SemanticService.createDemoService();
 
 
     /* The "Main method".
@@ -81,19 +84,19 @@ public class AddressbookUI extends UI {
          * only the needed changes to the web page without loading a new page.
          */
     	
-        newContact.addClickListener(e -> contactForm.edit(new Contact()));
+        newContact.addClickListener(e -> contactForm.edit(new Mitarbeiter()));
 
         filter.setInputPrompt("Filter contacts...");
         filter.addTextChangeListener(e -> refreshContacts(e.getText()));
 
-        contactList.setContainerDataSource(new BeanItemContainer<>(Contact.class));
-        contactList.setColumnOrder("firstName", "lastName", "email");
-        contactList.removeColumn("id");
-        contactList.removeColumn("birthDate");
-        contactList.removeColumn("phone");
+        contactList.setContainerDataSource(new BeanItemContainer<>(Mitarbeiter.class));
+//        contactList.setColumnOrder("firstName", "lastName", "email");
+//        contactList.removeColumn("id");
+//        contactList.removeColumn("birthDate");
+//        contactList.removeColumn("phone");
         contactList.setSelectionMode(Grid.SelectionMode.SINGLE);
         contactList.addSelectionListener(e
-                -> contactForm.edit((Contact) contactList.getSelectedRow()));
+                -> contactForm.edit((Mitarbeiter) contactList.getSelectedRow()));
         refreshContacts();
         
     }
@@ -160,7 +163,7 @@ public class AddressbookUI extends UI {
 
     private void refreshContacts(String stringFilter) {
         contactList.setContainerDataSource(new BeanItemContainer<>(
-                Contact.class, service.findAll(stringFilter)));
+                Mitarbeiter.class, semService.findAllMA(stringFilter)));
         contactForm.setVisible(false);
     }
 

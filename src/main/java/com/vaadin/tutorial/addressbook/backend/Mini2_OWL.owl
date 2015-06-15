@@ -10,12 +10,12 @@
 
 
 <Ontology xmlns="http://www.w3.org/2002/07/owl#"
-     xml:base="http://www.semanticweb.org/patrick/ontologies/2015/4/untitled-ontology-3"
+     xml:base="http://www.semanticweb.org/semanticOrg"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     ontologyIRI="http://www.semanticweb.org/patrick/ontologies/2015/4/untitled-ontology-3">
+     ontologyIRI="http://www.semanticweb.org/semanticOrg">
     <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
@@ -55,28 +55,13 @@
         <Class IRI="#DMB1"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#DMB1_S"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#DMB2"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#DMB2_P"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#DMB2_R"/>
     </Declaration>
     <Declaration>
         <Class IRI="#DMB3"/>
     </Declaration>
     <Declaration>
         <Class IRI="#DMBE"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#DMBE_G"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#DMBE_V"/>
     </Declaration>
     <Declaration>
         <Class IRI="#DMBLT"/>
@@ -97,9 +82,6 @@
         <Class IRI="#DokaDrevo"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Doka_Group"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#ECDL-Führerschein"/>
     </Declaration>
     <Declaration>
@@ -118,25 +100,7 @@
         <Class IRI="#Engineering"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#EngineeringRD"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Europe"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#Experte"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#FControlling"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#FEngineering"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#FPjM"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Fachgebiet"/>
     </Declaration>
     <Declaration>
         <Class IRI="#FacilityManagement"/>
@@ -152,9 +116,6 @@
     </Declaration>
     <Declaration>
         <Class IRI="#Geschlecht"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Gruppe"/>
     </Declaration>
     <Declaration>
         <Class IRI="#HumanResource"/>
@@ -205,13 +166,7 @@
         <Class IRI="#Organisationseinheit"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Overseas"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#ProductManagement"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#ProductionOperation"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Projekt"/>
@@ -241,9 +196,6 @@
         <Class IRI="#Sales"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#SalesMarketing"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#Schreibkraft"/>
     </Declaration>
     <Declaration>
@@ -263,6 +215,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="#SupplyChainManagement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Unterbezahlt"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Verkäufer"/>
@@ -298,19 +253,13 @@
         <ObjectProperty IRI="#hatALeiter"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#hatAbteilung"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#hatBLeiter"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#hatFControlling"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#hatFEngineering"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#hatFPjM"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#hatFachgebiet"/>
+        <ObjectProperty IRI="#hatBereich"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#hatGDirektor"/>
@@ -335,9 +284,6 @@
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#hatVorgesetzten"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#istChefVon"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#istExperte"/>
@@ -376,10 +322,31 @@
         <DataProperty IRI="#Gehalt"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="#hatEmailAdresse"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Abt001"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Abt002"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#Aigner_Roman"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Baumgartner_Erich"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Bereich_Finance_Bau"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Bereich_Finance_Metal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Bereich_RD_Bau"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Bereich_RD_Metal"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Burgstaller_Andreas"/>
@@ -391,6 +358,9 @@
         <NamedIndividual IRI="#Ebner_Matthias"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#ForschungsSparte"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#Helmberger_Peter"/>
     </Declaration>
     <Declaration>
@@ -398,6 +368,9 @@
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Hofschweiger_Helmut"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#James"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Kaltenbrunner_Daniel"/>
@@ -467,6 +440,12 @@
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Seiler_Franz"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Sparte_Bau"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Sparte_Metal"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Spitzer_Rainer"/>
@@ -584,6 +563,27 @@
         </ObjectSomeValuesFrom>
     </EquivalentClasses>
     <EquivalentClasses>
+        <Class IRI="#Unterbezahlt"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#leitetProjekt"/>
+                <Class IRI="#Projekt"/>
+            </ObjectSomeValuesFrom>
+            <DataExactCardinality cardinality="1">
+                <DataProperty IRI="#Gehalt"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="&xsd;maxExclusive">
+                        <Literal datatypeIRI="&xsd;integer">3000</Literal>
+                    </FacetRestriction>
+                    <FacetRestriction facet="&xsd;minExclusive">
+                        <Literal datatypeIRI="&xsd;integer">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataExactCardinality>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
         <Class IRI="#Verkäufer"/>
         <ObjectSomeValuesFrom>
             <ObjectProperty IRI="#hatQualifikation"/>
@@ -597,6 +597,10 @@
             <Class IRI="#Bereichsleiter"/>
         </ObjectSomeValuesFrom>
     </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#Abteilung"/>
+        <Class IRI="#Organisationseinheit"/>
+    </SubClassOf>
     <SubClassOf>
         <Class IRI="#Abteilungsleiter"/>
         <Class IRI="#Mitarbeiter"/>
@@ -638,20 +642,8 @@
         <Class IRI="#Abteilung"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#DMB1_S"/>
-        <Class IRI="#Gruppe"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#DMB2"/>
         <Class IRI="#Abteilung"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#DMB2_P"/>
-        <Class IRI="#Gruppe"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#DMB2_R"/>
-        <Class IRI="#Gruppe"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#DMB3"/>
@@ -660,14 +652,6 @@
     <SubClassOf>
         <Class IRI="#DMBE"/>
         <Class IRI="#Abteilung"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#DMBE_G"/>
-        <Class IRI="#Gruppe"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#DMBE_V"/>
-        <Class IRI="#Gruppe"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#DMBLT"/>
@@ -694,10 +678,6 @@
         <Class IRI="#Bereich"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Doka_Group"/>
-        <Class IRI="#Sparte"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#ECDL-Führerschein"/>
         <Class IRI="#Qualifikation"/>
     </SubClassOf>
@@ -722,26 +702,6 @@
         <Class IRI="#Bereich"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#EngineeringRD"/>
-        <Class IRI="#Organisationseinheit"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Europe"/>
-        <Class IRI="#Organisationseinheit"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#FControlling"/>
-        <Class IRI="#Fachgebiet"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#FEngineering"/>
-        <Class IRI="#Fachgebiet"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#FPjM"/>
-        <Class IRI="#Fachgebiet"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#FacilityManagement"/>
         <Class IRI="#Bereich"/>
     </SubClassOf>
@@ -752,10 +712,6 @@
     <SubClassOf>
         <Class IRI="#GKneu"/>
         <Class IRI="#Projekt"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Gruppe"/>
-        <Class IRI="#Organisationseinheit"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#HumanResource"/>
@@ -802,16 +758,8 @@
         <Class IRI="#Bereich"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Overseas"/>
-        <Class IRI="#Organisationseinheit"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#ProductManagement"/>
         <Class IRI="#Bereich"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#ProductionOperation"/>
-        <Class IRI="#Organisationseinheit"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#ProjektController"/>
@@ -834,16 +782,16 @@
         <Class IRI="#Bereich"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#SalesMarketing"/>
-        <Class IRI="#Organisationseinheit"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#Schreibkraft"/>
         <Class IRI="#Mitarbeiter"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SouthernEuropeAfrika"/>
         <Class IRI="#Bereich"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Sparte"/>
+        <Class IRI="#Organisationseinheit"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Staplerfahrer"/>
@@ -874,8 +822,32 @@
         <Class IRI="#Projekt"/>
     </SubClassOf>
     <ClassAssertion>
+        <Class IRI="#Abteilung"/>
+        <NamedIndividual IRI="#Abt001"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Abteilung"/>
+        <NamedIndividual IRI="#Abt002"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="#Mitarbeiter"/>
         <NamedIndividual IRI="#Aigner_Roman"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#FinanceControlling"/>
+        <NamedIndividual IRI="#Bereich_Finance_Bau"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#FinanceControlling"/>
+        <NamedIndividual IRI="#Bereich_Finance_Metal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RD"/>
+        <NamedIndividual IRI="#Bereich_RD_Bau"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RD"/>
+        <NamedIndividual IRI="#Bereich_RD_Metal"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Mitarbeiter"/>
@@ -946,6 +918,14 @@
         <NamedIndividual IRI="#Seiler_Franz"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="#Sparte"/>
+        <NamedIndividual IRI="#Sparte_Bau"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Sparte"/>
+        <NamedIndividual IRI="#Sparte_Metal"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="#Mitarbeiter"/>
         <NamedIndividual IRI="#Stefan_Martin"/>
     </ClassAssertion>
@@ -965,6 +945,11 @@
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#istVorgesetzterVon"/>
         <NamedIndividual IRI="#Helmberger_Peter"/>
+        <NamedIndividual IRI="#Pum_Christian"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
+        <NamedIndividual IRI="#Helmberger_Peter"/>
         <NamedIndividual IRI="#Reicher_Augustin"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
@@ -973,14 +958,19 @@
         <NamedIndividual IRI="#Ritt_Herbert"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#istVorgesetzterVon"/>
-        <NamedIndividual IRI="#Helmberger_Peter"/>
-        <NamedIndividual IRI="#Pum_Christian"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
         <ObjectProperty IRI="#leitetProjekt"/>
         <NamedIndividual IRI="#Helmberger_Peter"/>
         <NamedIndividual IRI="#PR_IT_Einführung_SemanticSearch"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#arbeitetAnProjekt"/>
+        <NamedIndividual IRI="#James"/>
+        <NamedIndividual IRI="#PR_IT_Einführung_SemanticSearch"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
+        <NamedIndividual IRI="#James"/>
+        <NamedIndividual IRI="#Mayr_Christian"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hatQualifikation"/>
@@ -988,19 +978,59 @@
         <NamedIndividual IRI="#STSchein001"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#istVorgesetzterVon"/>
-        <NamedIndividual IRI="#Weiß_Patrick"/>
-        <NamedIndividual IRI="#Kaltenbrunner_Daniel"/>
+        <ObjectProperty IRI="#hatBereich"/>
+        <NamedIndividual IRI="#Sparte_Bau"/>
+        <NamedIndividual IRI="#Bereich_RD_Bau"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hatBereich"/>
+        <NamedIndividual IRI="#Sparte_Bau"/>
+        <NamedIndividual IRI="#Bereich_Finance_Bau"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hatBereich"/>
+        <NamedIndividual IRI="#Sparte_Metal"/>
+        <NamedIndividual IRI="#Bereich_Finance_Metal"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hatBereich"/>
+        <NamedIndividual IRI="#Sparte_Metal"/>
+        <NamedIndividual IRI="#Bereich_RD_Metal"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#istVorgesetzterVon"/>
         <NamedIndividual IRI="#Weiß_Patrick"/>
         <NamedIndividual IRI="#Helmberger_Peter"/>
     </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
+        <NamedIndividual IRI="#Weiß_Patrick"/>
+        <NamedIndividual IRI="#Kaltenbrunner_Daniel"/>
+    </ObjectPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="#Erfahrungsjahre"/>
         <NamedIndividual IRI="#Dr.AndreasLudwig"/>
         <Literal datatypeIRI="&xsd;integer">12</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Gehalt"/>
+        <NamedIndividual IRI="#Helmberger_Peter"/>
+        <Literal datatypeIRI="&xsd;integer">1000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Beschreibung"/>
+        <NamedIndividual IRI="#James"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">James Bond Mitarbeiter</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Erfahrungsjahre"/>
+        <NamedIndividual IRI="#James"/>
+        <Literal datatypeIRI="&xsd;integer">10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#Gehalt"/>
+        <NamedIndividual IRI="#James"/>
+        <Literal datatypeIRI="&xsd;integer">5000</Literal>
     </DataPropertyAssertion>
     <SubObjectPropertyOf>
         <ObjectProperty IRI="#Organisation"/>
@@ -1019,20 +1049,16 @@
         <ObjectProperty IRI="#Organisation"/>
     </SubObjectPropertyOf>
     <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hatAbteilung"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
         <ObjectProperty IRI="#hatBLeiter"/>
         <ObjectProperty IRI="#Organisation"/>
     </SubObjectPropertyOf>
     <SubObjectPropertyOf>
-        <ObjectProperty IRI="#hatFControlling"/>
-        <ObjectProperty IRI="#hatFachgebiet"/>
-    </SubObjectPropertyOf>
-    <SubObjectPropertyOf>
-        <ObjectProperty IRI="#hatFEngineering"/>
-        <ObjectProperty IRI="#hatFachgebiet"/>
-    </SubObjectPropertyOf>
-    <SubObjectPropertyOf>
-        <ObjectProperty IRI="#hatFPjM"/>
-        <ObjectProperty IRI="#hatFachgebiet"/>
+        <ObjectProperty IRI="#hatBereich"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
     </SubObjectPropertyOf>
     <SubObjectPropertyOf>
         <ObjectProperty IRI="#hatGDirektor"/>
@@ -1063,10 +1089,6 @@
         <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
     </SubObjectPropertyOf>
     <SubObjectPropertyOf>
-        <ObjectProperty IRI="#istChefVon"/>
-        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
-    </SubObjectPropertyOf>
-    <SubObjectPropertyOf>
         <ObjectProperty IRI="#istExperte"/>
         <ObjectProperty IRI="#hatQualifikation"/>
     </SubObjectPropertyOf>
@@ -1091,9 +1113,24 @@
         <ObjectProperty IRI="#arbeitetAnProjekt"/>
     </SubObjectPropertyOf>
     <InverseObjectProperties>
-        <ObjectProperty IRI="#istVorgesetzterVon"/>
         <ObjectProperty IRI="#hatVorgesetzten"/>
+        <ObjectProperty IRI="#istVorgesetzterVon"/>
     </InverseObjectProperties>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#gehörtZu"/>
+    </SymmetricObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#arbeitetAnProjekt"/>
+        <Class IRI="#Mitarbeiter"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hatAbteilung"/>
+        <Class IRI="#Bereich"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hatBereich"/>
+        <Class IRI="#Sparte"/>
+    </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#hatVorgesetzten"/>
         <Class IRI="#Mitarbeiter"/>
@@ -1101,6 +1138,14 @@
     <ObjectPropertyRange>
         <ObjectProperty IRI="#arbeitetAnProjekt"/>
         <Class IRI="#Projekt"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hatAbteilung"/>
+        <Class IRI="#Abteilung"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hatBereich"/>
+        <Class IRI="#Bereich"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#hatQualifikation"/>
@@ -1133,6 +1178,14 @@
     <DataPropertyRange>
         <DataProperty IRI="#Erfahrungsjahre"/>
         <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#Gehalt"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hatEmailAdresse"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
 </Ontology>
 
