@@ -1,14 +1,23 @@
 package com.vaadin.tutorial.addressbook;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.event.ItemClickEvent;
+import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.tutorial.addressbook.backend.Contact;
 import com.vaadin.tutorial.addressbook.backend.ContactService;
 import com.vaadin.ui.*;
+import com.vaadin.ui.Tree.CollapseEvent;
+import com.vaadin.ui.Tree.ExpandEvent;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -40,7 +49,9 @@ public class AddressbookUI extends UI {
 
     // ContactForm is an example of a custom component class
     ContactForm contactForm = new ContactForm();
-
+    
+    MyTree tree = new MyTree();
+    
     // ContactService is a in-memory mock DAO that mimics
     // a real-world datasource. Typically implemented for
     // example as EJB or Spring Data based service.
@@ -57,6 +68,8 @@ public class AddressbookUI extends UI {
     protected void init(VaadinRequest request) {
         configureComponents();
         buildLayout();
+        
+       
     }
 
 
@@ -67,6 +80,7 @@ public class AddressbookUI extends UI {
          * to synchronously handle those events. Vaadin automatically sends
          * only the needed changes to the web page without loading a new page.
          */
+    	
         newContact.addClickListener(e -> contactForm.edit(new Contact()));
 
         filter.setInputPrompt("Filter contacts...");
@@ -81,6 +95,7 @@ public class AddressbookUI extends UI {
         contactList.addSelectionListener(e
                 -> contactForm.edit((Contact) contactList.getSelectedRow()));
         refreshContacts();
+        
     }
 
     /* Robust layouts.
@@ -95,22 +110,40 @@ public class AddressbookUI extends UI {
      * with Vaadin Designer, CSS and HTML.
      */
     private void buildLayout() {
+    	List<String> list = new LinkedList<String>();
+        
+    	list.add("Amstetten");
+    	list.add("Linz");
+    	list.add("Wien");
+    	
+    	tree.addElements("Firma", list);
+    	
+    	List<String> list2 = new LinkedList<String>();
+        
+    	list2.add("Metallbau");
+    	list2.add("Holzbau");
+  
+    	tree.addElements("Linz",list2);
+    	
+    	tree.addElements("Firma2",list);
+        tree.addItem("Firma3");	
+    	
+        //expand Tree
+        for (Object itemId: tree.getItemIds())
+            tree.expandItem(itemId);
+    	        
         HorizontalLayout actions = new HorizontalLayout(filter, newContact);
         actions.setWidth("100%");
         filter.setWidth("100%");
         actions.setExpandRatio(filter, 1);
-
-        VerticalLayout left = new VerticalLayout(actions, contactList);
-        left.setSizeFull();
-        contactList.setSizeFull();
-        left.setExpandRatio(contactList, 1);
-
-        HorizontalLayout mainLayout = new HorizontalLayout(left, contactForm);
-        mainLayout.setSizeFull();
-        mainLayout.setExpandRatio(left, 1);
-
-        // Split and allow resizing
-        setContent(mainLayout);
+        
+        HorizontalLayout secondRow = new HorizontalLayout(tree, contactList, contactForm);
+        
+        VerticalLayout vert = new VerticalLayout(actions, secondRow);
+        
+        HorizontalLayout hor = new HorizontalLayout(vert);
+       
+        setContent(hor);
     }
 
     /* Choose the design patterns you like.
@@ -131,7 +164,7 @@ public class AddressbookUI extends UI {
         contactForm.setVisible(false);
     }
 
-
+    
 
 
     /*  Deployed as a Servlet or Portlet.

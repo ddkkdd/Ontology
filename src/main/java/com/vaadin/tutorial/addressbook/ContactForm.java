@@ -1,5 +1,8 @@
 package com.vaadin.tutorial.addressbook;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.event.ShortcutAction;
@@ -7,6 +10,8 @@ import com.vaadin.tutorial.addressbook.backend.Contact;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.themes.ValoTheme;
+import com.vaadin.ui.Tree;
+
 
 /* Create custom UI Components.
  *
@@ -25,6 +30,8 @@ public class ContactForm extends FormLayout {
     TextField phone = new TextField("Phone");
     TextField email = new TextField("Email");
     DateField birthDate = new DateField("Birth date");
+    ComboBox box = new ComboBox("Wohnort");
+    Tree tree = new Tree();
 
     Contact contact;
 
@@ -45,6 +52,16 @@ public class ContactForm extends FormLayout {
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         setVisible(false);
+        
+        List<String> list = new LinkedList<String>();
+        
+    	list.add("Amstetten");
+    	list.add("Linz");
+    	list.add("Wien");
+    	
+    	for (int i=0; i<list.size();i++){
+    		box.addItem(list.get(i));
+    	}
     }
 
     private void buildLayout() {
@@ -53,8 +70,8 @@ public class ContactForm extends FormLayout {
 
         HorizontalLayout actions = new HorizontalLayout(save, cancel);
         actions.setSpacing(true);
-
-		addComponents(actions, firstName, lastName, phone, email, birthDate);
+        
+		addComponents(tree, actions, firstName, lastName, phone, email, birthDate, box);
     }
 
     /* Use any JVM language.
@@ -90,6 +107,7 @@ public class ContactForm extends FormLayout {
         // Place to call business logic.
         Notification.show("Cancelled", Type.TRAY_NOTIFICATION);
         getUI().contactList.select(null);
+        getUI().contactForm.setVisible(false);
     }
 
     void edit(Contact contact) {
