@@ -49,6 +49,11 @@ public class SemanticService {
 
 	public static void main(String[] args) throws OWLException, IOException {
 		createDemoService();
+		
+		for (Individual it : instance.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Organisationseinheit>")){
+			System.out.println(it.toString());
+		}
+		
 	}
 
 	public static SemanticService createDemoService() {
@@ -108,7 +113,7 @@ public class SemanticService {
 			entry.setId(nextId++);
 		}
 		try {
-//			 entry = (Individual) BeanUtils.cloneBean(entry);
+			// entry = (Individual) BeanUtils.cloneBean(entry);
 
 		} catch (Exception ex) {
 			throw new RuntimeException(ex);
@@ -118,11 +123,12 @@ public class SemanticService {
 	}
 
 	public static void loadOntology() throws OWLOntologyCreationException {
-		//System.out.println(VaadinService.getCurrent().getBaseDirectory().toString());
-		
+		// System.out.println(VaadinService.getCurrent().getBaseDirectory().toString());
+
 		OWLOntologyManager m = OWLManager.createOWLOntologyManager();
 
-		String file = "/Mini2_OWL.owl";
+		// String file = "/Mini2_OWL.owl";
+		String file = "C:\\Users\\Peter\\Dropbox\\SemTech SS15\\Miniprojekt 2\\Mini2_OWL.owl";
 		OWLOntology o = m.loadOntologyFromOntologyDocument(new File(file));
 
 		OWLReasoner reasoner = new Reasoner(o);
@@ -139,7 +145,7 @@ public class SemanticService {
 		System.out.println("Anzahl: " + individuals.size());
 		long j = 0;
 		boolean isMA = false;
-		
+
 		for (OWLNamedIndividual ind : individuals) {
 
 			List<OWLConcept> dpm = new LinkedList<OWLConcept>();
@@ -147,8 +153,7 @@ public class SemanticService {
 
 			j++;
 			System.out.println(ind);
-			
-			
+
 			Map<OWLDataPropertyExpression, Set<OWLLiteral>> dataProperties = ind
 					.getDataPropertyValues(o);
 			for (Entry<OWLDataPropertyExpression, Set<OWLLiteral>> d : dataProperties
@@ -171,45 +176,44 @@ public class SemanticService {
 						opm.add(new OWLConcept(d.getKey().toString(), s
 								.toString()));
 						// System.out.println(d.getKey().toString()+"  ---  "+s.toString());
-						
+
 					}
 				}
 			}
-			
+
 			isMA = false;
 
 			List<String> classes = new LinkedList<String>();
-			
+
 			NodeSet<OWLClass> owlclasses = reasoner.getTypes(ind, false);
 			for (Node<OWLClass> s : owlclasses) {
 				for (OWLClass c : s) {
 					classes.add(c.toString());
-					
-					
-					
+
 					System.out.println("NAVAX");
 					System.out.println(c.toString());
-					System.out.println("<http://www.semanticweb.org/semanticOrg#Mitarbeiter>");
-					isMA = isMA | c.toString().equals("<http://www.semanticweb.org/semanticOrg#Mitarbeiter>");
-					
+					System.out
+							.println("<http://www.semanticweb.org/semanticOrg#Mitarbeiter>");
+					isMA = isMA
+							| c.toString()
+									.equals("<http://www.semanticweb.org/semanticOrg#Mitarbeiter>");
+
 				}
 			}
-			
-			
-			Individual i = new Individual(j, ind.toString() , dpm, opm, classes);
-			
-			if (isMA){
+
+			Individual i = new Individual(j, ind.toString(), dpm, opm, classes);
+
+			if (isMA) {
 				System.out.println(i.createMitarbeiter().toString());
 				instance.saveMA(i.createMitarbeiter());
 			}
-			
-			
+
 			instance.save(i);
 
 		}
 
 	}
-	
+
 	public synchronized List<Mitarbeiter> findAllMA(String stringFilter) {
 		System.out.println("PEHE TEST");
 		ArrayList<Mitarbeiter> arrayList = new ArrayList<Mitarbeiter>();
@@ -251,13 +255,27 @@ public class SemanticService {
 			entry.setId(nextId++);
 		}
 		try {
-			 entry = (Mitarbeiter) BeanUtils.cloneBean(entry);
+			entry = (Mitarbeiter) BeanUtils.cloneBean(entry);
 
 		} catch (Exception ex) {
 			throw new RuntimeException(ex);
 		}
 		mitarbeiter.put(entry.getId(), entry);
-		System.out.println("MITARBEITER hinzugefügt ->"+mitarbeiter.size());
+		System.out.println("MITARBEITER hinzugefügt ->" + mitarbeiter.size());
+	}
+
+	public List<Individual> getIndividualByClass(String classname) {
+		// private HashMap<Long, Individual> individuals = new HashMap<>();
+		List<Individual> classIndividuals = new ArrayList<>();
+		for (Entry<Long, Individual> s : individuals.entrySet()) {
+			if (s.getValue().isClassMember(classname)) {
+				classIndividuals.add(s.getValue());
+			}
+
+		}
+
+		return classIndividuals;
+
 	}
 
 }

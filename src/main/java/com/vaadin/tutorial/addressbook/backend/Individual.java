@@ -18,52 +18,47 @@ import java.util.Set;
 /**
  * A simple DTO for the address book example.
  *
- * Serializable and cloneable Java Object that are typically persisted
- * in the database and can also be easily converted to different formats like JSON.
+ * Serializable and cloneable Java Object that are typically persisted in the
+ * database and can also be easily converted to different formats like JSON.
  */
 // Backend DTO class. This is just a typical Java backend implementation
 // class and nothing Vaadin specific.
 public class Individual implements Serializable, Cloneable {
 
-    private Long id;
-    private String individualName;
-    private List<OWLConcept> dataProperties;
-    private List<OWLConcept> objectProperties;
-    private List<String> classes;
-    
-    
-    public Individual(
-			Long j,
-			String individualName,
-			List<OWLConcept> dpm,
-			List<OWLConcept> opm,
-			List<String> classes2) {
-    	
-    	this.id = j;
-    	this.individualName = individualName; 
-    	this.dataProperties = dpm;
-    	this.objectProperties = opm;
-    	this.classes = classes2;
-    	
+	private Long id;
+	private String individualName;
+	private List<OWLConcept> dataProperties;
+	private List<OWLConcept> objectProperties;
+	private List<String> classes;
+
+	public Individual(Long j, String individualName, List<OWLConcept> dpm,
+			List<OWLConcept> opm, List<String> classes2) {
+
+		this.id = j;
+		this.individualName = individualName;
+		this.dataProperties = dpm;
+		this.objectProperties = opm;
+		this.classes = classes2;
+
 	}
 
 	public Long getId() {
-        return id;
-    }
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    @Override
-    public Individual clone() throws CloneNotSupportedException {
-        try {
-            //return (Individual) BeanUtils.cloneBean(this);
-            return this;
-        } catch (Exception ex) {
-            throw new CloneNotSupportedException();
-        }
-    }
+	@Override
+	public Individual clone() throws CloneNotSupportedException {
+		try {
+			// return (Individual) BeanUtils.cloneBean(this);
+			return this;
+		} catch (Exception ex) {
+			throw new CloneNotSupportedException();
+		}
+	}
 
 	public List<OWLConcept> getDataProperties() {
 		return dataProperties;
@@ -89,29 +84,39 @@ public class Individual implements Serializable, Cloneable {
 		this.classes = classes;
 	}
 
-	public Mitarbeiter createMitarbeiter(){
-		
+	public Mitarbeiter createMitarbeiter() {
+
 		Mitarbeiter m = new Mitarbeiter();
-		
+
 		m.setName(individualName.substring(individualName.lastIndexOf("#")));
-		
+
 		m.setEintrittsdatum(getPropertyValue("<http://www.semanticweb.org/semanticOrg#Erfahrungsjahre>"));
-		m.setBeschreibung(getPropertyValue("<http://www.semanticweb.org/semanticOrg#Beschreibung>"));	
+		m.setBeschreibung(getPropertyValue("<http://www.semanticweb.org/semanticOrg#Beschreibung>"));
 		m.setGehalt(getPropertyValue("<http://www.semanticweb.org/semanticOrg#Gehalt>"));
 		m.setId(id);
 		return m;
 	}
-	
-	public String getPropertyValue(String property){
-		
-		for (OWLConcept it : objectProperties){
-			if (it.getName().equals(property)){
-				return it.getValue();
-			}			
+
+	public boolean isClassMember(String classname) {
+
+		for (String s : classes) {
+			if (s.equals(classname))
+				return true;
 		}
-		
-		for (OWLConcept it : dataProperties){
-			if (it.getName().equals(property)){
+
+		return false;
+	}
+
+	public String getPropertyValue(String property) {
+
+		for (OWLConcept it : objectProperties) {
+			if (it.getName().equals(property)) {
+				return it.getValue();
+			}
+		}
+
+		for (OWLConcept it : dataProperties) {
+			if (it.getName().equals(property)) {
 				return it.getValue();
 			}
 		}
@@ -125,4 +130,5 @@ public class Individual implements Serializable, Cloneable {
 				+ ", dataProperties=" + dataProperties + ", objectProperties="
 				+ objectProperties + ", classes=" + classes + "]";
 	}
+
 }

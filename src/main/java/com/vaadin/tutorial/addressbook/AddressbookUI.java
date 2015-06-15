@@ -15,6 +15,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.tutorial.addressbook.backend.Contact;
 import com.vaadin.tutorial.addressbook.backend.ContactService;
+import com.vaadin.tutorial.addressbook.backend.Individual;
 import com.vaadin.tutorial.addressbook.backend.Mitarbeiter;
 import com.vaadin.tutorial.addressbook.backend.SemanticService;
 import com.vaadin.ui.*;
@@ -99,6 +100,12 @@ public class AddressbookUI extends UI {
                 -> contactForm.edit((Mitarbeiter) contactList.getSelectedRow()));
         refreshContacts();
         
+        System.out.println("WEB SERVER TEST 1111");
+        for (Individual it : semService.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Organisationseinheit>")){
+			System.out.println(it.toString());
+		}
+		
+        
     }
 
     /* Robust layouts.
@@ -179,6 +186,8 @@ public class AddressbookUI extends UI {
     @VaadinServletConfiguration(ui = AddressbookUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet {
     }
-
+    
+    
+   
 
 }
