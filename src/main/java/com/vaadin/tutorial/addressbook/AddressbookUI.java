@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.addressbook;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,18 +35,6 @@ import javax.servlet.annotation.WebServlet;
 @Theme("valo")
 public class AddressbookUI extends UI {
 
-
-
-
-
-
-
-	/* Hundreds of widgets.
-	 * Vaadin's user interface components are just Java objects that encapsulate
-	 * and handle cross-browser support and client-server communication. The
-	 * default Vaadin components are in the com.vaadin.ui package and there
-	 * are over 500 more in vaadin.com/directory.
-     */
     TextField filter = new TextField();
     Grid contactList = new Grid();
     Button newContact = new Button("New contact");
@@ -54,6 +43,9 @@ public class AddressbookUI extends UI {
     ContactForm contactForm = new ContactForm();
     
     MyTree tree = new MyTree();
+    List<String> sparteList = new LinkedList<String>();
+    List<String> bereichList = new LinkedList<String>();
+    
     
     // ContactService is a in-memory mock DAO that mimics
     // a real-world datasource. Typically implemented for
@@ -61,13 +53,6 @@ public class AddressbookUI extends UI {
     //ContactService service = ContactService.createDemoService();
     SemanticService semService = SemanticService.createDemoService();
 
-
-    /* The "Main method".
-     *
-     * This is the entry point method executed to initialize and configure
-     * the visible user interface. Executed on every browser reload because
-     * a new instance is created for each web page loaded.
-     */
     @Override
     protected void init(VaadinRequest request) {
         configureComponents();
@@ -78,13 +63,6 @@ public class AddressbookUI extends UI {
 
 
     private void configureComponents() {
-         /* Synchronous event handling.
-         *
-         * Receive user interaction events on the server-side. This allows you
-         * to synchronously handle those events. Vaadin automatically sends
-         * only the needed changes to the web page without loading a new page.
-         */
-    	
         newContact.addClickListener(e -> contactForm.edit(new Mitarbeiter()));
 
         filter.setInputPrompt("Filter contacts...");
@@ -100,43 +78,23 @@ public class AddressbookUI extends UI {
                 -> contactForm.edit((Mitarbeiter) contactList.getSelectedRow()));
         refreshContacts();
         
-        System.out.println("WEB SERVER TEST 1111");
-        for (Individual it : semService.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Organisationseinheit>")){
-			System.out.println(it.toString());
+        for (Individual it : semService.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Sparte>")){
+			String[] temp = it.getIndividualName().split("#");
+        	sparteList.add((String) temp[1].subSequence(0, temp[1].length()-1));
 		}
 		
+        for (Individual it : semService.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Bereich>")){
+        	String[] temp = it.getIndividualName().split("#");
+        	bereichList.add((String) temp[1].subSequence(0, temp[1].length()-1));
+        	System.out.println(temp[1]);
+        }
         
     }
 
-    /* Robust layouts.
-     *
-     * Layouts are components that contain other components.
-     * HorizontalLayout contains TextField and Button. It is wrapped
-     * with a Grid into VerticalLayout for the left side of the screen.
-     * Allow user to resize the components with a SplitPanel.
-     *
-     * In addition to programmatically building layout in Java,
-     * you may also choose to setup layout declaratively
-     * with Vaadin Designer, CSS and HTML.
-     */
     private void buildLayout() {
     	List<String> list = new LinkedList<String>();
         
-    	list.add("Amstetten");
-    	list.add("Linz");
-    	list.add("Wien");
-    	
-    	tree.addElements("Firma", list);
-    	
-    	List<String> list2 = new LinkedList<String>();
-        
-    	list2.add("Metallbau");
-    	list2.add("Holzbau");
-  
-    	tree.addElements("Linz",list2);
-    	
-    	tree.addElements("Firma2",list);
-        tree.addItem("Firma3");	
+    	tree.addElements("", sparteList);
     	
         //expand Tree
         for (Object itemId: tree.getItemIds())
@@ -156,14 +114,6 @@ public class AddressbookUI extends UI {
         setContent(hor);
     }
 
-    /* Choose the design patterns you like.
-     *
-     * It is good practice to have separate data access methods that
-     * handle the back-end access and/or the user interface updates.
-     * You can further split your code into classes to easier maintenance.
-     * With Vaadin you can follow MVC, MVP or any other design pattern
-     * you choose.
-     */
     void refreshContacts() {
         refreshContacts(filter.getValue());
     }
@@ -174,20 +124,8 @@ public class AddressbookUI extends UI {
         contactForm.setVisible(false);
     }
 
-    
-
-
-    /*  Deployed as a Servlet or Portlet.
-     *
-     *  You can specify additional servlet parameters like the URI and UI
-     *  class name and turn on production mode when you have finished developing the application.
-     */
     @WebServlet(urlPatterns = "/*")
     @VaadinServletConfiguration(ui = AddressbookUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet {
     }
-    
-    
-   
-
 }
