@@ -7,6 +7,7 @@ import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.tutorial.addressbook.backend.Contact;
+import com.vaadin.tutorial.addressbook.backend.Mitarbeiter;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.themes.ValoTheme;
@@ -33,10 +34,10 @@ public class ContactForm extends FormLayout {
     ComboBox box = new ComboBox("Wohnort");
     Tree tree = new Tree();
 
-    Contact contact;
+    Mitarbeiter mitarbeiter;
 
     // Easily bind forms to beans and manage validation and buffering
-    BeanFieldGroup<Contact> formFieldBindings;
+    BeanFieldGroup<Mitarbeiter> formFieldBindings;
 
     public ContactForm() {
         configureComponents();
@@ -91,11 +92,11 @@ public class ContactForm extends FormLayout {
             formFieldBindings.commit();
 
             // Save DAO to backend with direct synchronous service API
-            getUI().service.save(contact);
+            getUI().semService.saveMA(mitarbeiter);
 
             String msg = String.format("Saved '%s %s'.",
-                    contact.getFirstName(),
-                    contact.getLastName());
+                    mitarbeiter.getName(),
+                    mitarbeiter.getBeschreibung());
             Notification.show(msg,Type.TRAY_NOTIFICATION);
             getUI().refreshContacts();
         } catch (FieldGroup.CommitException e) {
@@ -110,14 +111,14 @@ public class ContactForm extends FormLayout {
         getUI().contactForm.setVisible(false);
     }
 
-    void edit(Contact contact) {
-        this.contact = contact;
-        if(contact != null) {
+    void edit(Mitarbeiter mitarbeiter) {
+        this.mitarbeiter = mitarbeiter;
+        if(mitarbeiter != null) {
             // Bind the properties of the contact POJO to fiels in this form
-            formFieldBindings = BeanFieldGroup.bindFieldsBuffered(contact, this);
+            formFieldBindings = BeanFieldGroup.bindFieldsBuffered(mitarbeiter, this);
             firstName.focus();
         }
-        setVisible(contact != null);
+        setVisible(mitarbeiter != null);
     }
 
     @Override
