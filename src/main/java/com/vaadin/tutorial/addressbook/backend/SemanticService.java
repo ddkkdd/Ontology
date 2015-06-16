@@ -157,8 +157,8 @@ public class SemanticService {
 		
 
 		// String file = "/Mini2_OWL.owl";
-		String file = "C:\\Users\\Peter\\Dropbox\\SemTech SS15\\Miniprojekt 2\\Mini2_OWL.owl";
-		//String file = "/Users/Daniel/Dropbox/SemTech SS15/Miniprojekt 2/Mini2_OWL.owl";
+		//String file = "C:\\Users\\Peter\\Dropbox\\SemTech SS15\\Miniprojekt 2\\Mini2_OWL.owl";
+		String file = "/Users/Daniel/Dropbox/SemTech SS15/Miniprojekt 2/Mini2_OWL.owl";
 		
 		o = m.loadOntologyFromOntologyDocument(new File(file));
 

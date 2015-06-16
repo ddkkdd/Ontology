@@ -28,7 +28,7 @@ public class MyTree extends Tree{
         
 	}
 	
-	public void addElements(String parent, List<String> elements){
+	/*public void addElements(String parent, List<String> elements){
 		for(int i=0; i<elements.size(); i++){
 			String temp = elements.get(i);
 			if (parent==""){
@@ -44,5 +44,16 @@ public class MyTree extends Tree{
 				//}
 			}
 		}
-    }
+    }*/
+	
+	public void addElements(String parent, String child){
+		if (!this.containsId(parent)){
+			this.addItem(parent);
+		}
+	
+		if (!this.containsId(child)){
+			this.addItem(child);
+			this.setParent(child, parent);
+		}
+	}
 }

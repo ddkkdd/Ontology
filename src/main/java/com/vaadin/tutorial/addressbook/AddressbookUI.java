@@ -2,6 +2,7 @@ package com.vaadin.tutorial.addressbook;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,7 @@ public class AddressbookUI extends UI {
     ContactForm contactForm = new ContactForm();
     
     MyTree tree = new MyTree();
-    List<String> sparteList = new LinkedList<String>();
+    Map<String, String> sparteList = new HashMap<String, String>();
     Map<String, String> bereichList = new HashMap<String, String>();
     
     
@@ -82,8 +83,13 @@ public class AddressbookUI extends UI {
         refreshContacts();
         
         for (Individual it : semService.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Sparte>")){
-			String[] temp = it.getIndividualName().split("#");
-        	sparteList.add((String) temp[1].subSequence(0, temp[1].length()-1));
+        	for (OWLConcept concept: it.getObjectProperties()){
+				
+				sparteList.put(it.getIndividualName(), concept.getValue());
+				
+				System.out.println("Sparte: "+it.getIndividualName());
+				System.out.println("Bereich: "+concept.getValue()+"\n");
+			}
 		}
 		
        	
@@ -93,17 +99,17 @@ public class AddressbookUI extends UI {
 						
 				bereichList.put(it.getIndividualName(), concept.getValue());
 				
-				System.out.println(it.getIndividualName()+"\n");
-				System.out.println(concept.getValue()+"\n");
+				System.out.println("Bereich: "+it.getIndividualName());
+				System.out.println("Abteilung: "+concept.getValue()+"\n");
 			}
 		}
     }
 
     private void buildLayout() {
-    	List<String> list = new LinkedList<String>();
-        
-    	tree.addElements("", sparteList);
     	
+    	buildTreeOutOfHashMap(sparteList);
+    	buildTreeOutOfHashMap(bereichList);
+    	    	
         //expand Tree
         for (Object itemId: tree.getItemIds())
             tree.expandItem(itemId);
@@ -136,4 +142,19 @@ public class AddressbookUI extends UI {
     @VaadinServletConfiguration(ui = AddressbookUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet {
     }
+    
+    public static String cutOutName (String iri){
+    	String tmp[] = iri.split("#");
+    	return tmp[1].substring(0, tmp[1].length()-1);
+    }
+    
+    public void buildTreeOutOfHashMap(Map<String, String> map){
+		Iterator it = map.entrySet().iterator();
+    	while (it.hasNext()){
+    		Map.Entry entry = (Map.Entry)it.next();
+    		String parent = cutOutName(entry.getKey().toString());
+    		String child = cutOutName(entry.getValue().toString());
+    		tree.addElements(parent, child);
+    	}
+	}
 }
