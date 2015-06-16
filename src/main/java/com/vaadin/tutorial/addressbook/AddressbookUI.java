@@ -47,8 +47,8 @@ public class AddressbookUI extends UI {
     ContactForm contactForm = new ContactForm();
     
     MyTree tree = new MyTree();
-    Map<String, String> sparteList = new HashMap<String, String>();
-    Map<String, String> bereichList = new HashMap<String, String>();
+    Map<String, String> sparteMap = new HashMap<String, String>();
+    Map<String, String> bereichMap = new HashMap<String, String>();
     
     
     // ContactService is a in-memory mock DAO that mimics
@@ -82,19 +82,19 @@ public class AddressbookUI extends UI {
                 -> contactForm.edit((Mitarbeiter) contactList.getSelectedRow()));
         refreshContacts();
                	
-       sparteList = buildHashMapForTree("<http://www.semanticweb.org/semanticOrg#Sparte>");
-       bereichList = buildHashMapForTree("<http://www.semanticweb.org/semanticOrg#Bereich>");
+       sparteMap = buildHashMapForTree("<http://www.semanticweb.org/semanticOrg#Sparte>");
+       bereichMap = buildHashMapForTree("<http://www.semanticweb.org/semanticOrg#Bereich>");
+       
+       buildTreeOutOfHashMap(sparteMap);
+   	   buildTreeOutOfHashMap(bereichMap);
+   	    	
+       //expand Tree
+       for (Object itemId: tree.getItemIds())
+           tree.expandItem(itemId);
     }
 
     private void buildLayout() {
-    	
-    	buildTreeOutOfHashMap(sparteList);
-    	buildTreeOutOfHashMap(bereichList);
-    	    	
-        //expand Tree
-        for (Object itemId: tree.getItemIds())
-            tree.expandItem(itemId);
-    	        
+    	      
         HorizontalLayout actions = new HorizontalLayout(filter, newContact);
         actions.setWidth("100%");
         filter.setWidth("100%");
