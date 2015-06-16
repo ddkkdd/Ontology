@@ -81,28 +81,9 @@ public class AddressbookUI extends UI {
         contactList.addSelectionListener(e
                 -> contactForm.edit((Mitarbeiter) contactList.getSelectedRow()));
         refreshContacts();
-        
-        for (Individual it : semService.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Sparte>")){
-        	for (OWLConcept concept: it.getObjectProperties()){
-				
-				sparteList.put(it.getIndividualName(), concept.getValue());
-				
-				System.out.println("Sparte: "+it.getIndividualName());
-				System.out.println("Bereich: "+concept.getValue()+"\n");
-			}
-		}
-		
-       	
-        for (Individual it : semService.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Bereich>")){
-			//System.out.println(it.getIndividualName());
-        	for (OWLConcept concept: it.getObjectProperties()){
-						
-				bereichList.put(it.getIndividualName(), concept.getValue());
-				
-				System.out.println("Bereich: "+it.getIndividualName());
-				System.out.println("Abteilung: "+concept.getValue()+"\n");
-			}
-		}
+               	
+       sparteList = buildHashMapForTree("<http://www.semanticweb.org/semanticOrg#Sparte>");
+       bereichList = buildHashMapForTree("<http://www.semanticweb.org/semanticOrg#Bereich>");
     }
 
     private void buildLayout() {
@@ -141,6 +122,21 @@ public class AddressbookUI extends UI {
     @WebServlet(urlPatterns = "/*")
     @VaadinServletConfiguration(ui = AddressbookUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet {
+    }
+    
+    public HashMap<String, String> buildHashMapForTree(String iri){
+    	Map <String, String> map = new HashMap<String, String>();
+    	
+    	for (Individual it : semService.getIndividualByClass(iri)){
+        	for (OWLConcept concept: it.getObjectProperties()){
+				
+				map.put(it.getIndividualName(), concept.getValue());
+				
+				System.out.println("Sparte: "+it.getIndividualName());
+				System.out.println("Bereich: "+concept.getValue()+"\n");
+			}
+		}
+    	return (HashMap<String, String>) map;
     }
     
     public static String cutOutName (String iri){
