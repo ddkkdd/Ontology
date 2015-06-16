@@ -12,6 +12,7 @@ import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
+import org.semanticweb.owlapi.model.OWLDatatype;
 import org.semanticweb.owlapi.model.OWLException;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
@@ -22,6 +23,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+import org.semanticweb.owlapi.model.RemoveAxiom;
 import org.semanticweb.owlapi.reasoner.InferenceType;
 import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
@@ -82,7 +84,13 @@ public class SemanticService {
 //		instance.saveObjectProperty("Helmberger_Peter", "istVorgesetzterVon", "Burgstaller_Andreas");
 //		instance.saveObjectProperty("Helmberger_Peter", "istVorgesetzterVon", "sepp");
 		
-		instance.saveDataProperty("Helmberger_Peter", "Erfahrungsjahre", "12");
+		try {
+//			instance.saveDataProperty("Helmberger_Peter", "Erfahrungsjahre", "raben");
+			//instance.saveIndividual("Bereich_RD_Bau","Mitarbeiter");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("saved...");
 	}
 
@@ -316,7 +324,7 @@ public class SemanticService {
 	}
 
 	public void saveObjectProperty(String sString, String opString, String oString)
-			throws OWLOntologyStorageException {
+			throws Exception {
 		OWLIndividual subject = df.getOWLNamedIndividual(IRI.create(iri + "#" + sString));
 		OWLIndividual object = df.getOWLNamedIndividual(IRI.create(iri + "#" + oString));
 
@@ -327,16 +335,33 @@ public class SemanticService {
 
 		AddAxiom addAxiomChange = new AddAxiom(o, assertion);
 		m.applyChange(addAxiomChange);
-		m.saveOntology(o);
+		
+		reasoner.flush();
+		
+		System.out.println("Reasoner consistent? "+reasoner.isConsistent());
+		if (!reasoner.isConsistent()){
+			RemoveAxiom removeAxiom = new RemoveAxiom(o,assertion);
+			m.applyChange(removeAxiom);
+			throw new Exception("Axiom ("+sString+" "+opString+" "+oString+") würde zu einer Inkonsitenz in der Ontologie führen");
+		} else{
+			m.saveOntology(o);
+		}
+		
 	}
 	
 	public void saveDataProperty(String sString, String opString, String value)
-			throws OWLOntologyStorageException {
+			throws Exception {
 		OWLIndividual subject = df.getOWLNamedIndividual(IRI.create(iri + "#" + sString));
 		
 		OWLLiteral literal = df.getOWLLiteral(value);
 		
-
+		try {
+		    int foo = Integer.parseInt(value);
+		    literal= df.getOWLLiteral(foo);    
+		} catch (NumberFormatException e) {
+			
+		}
+		
 		OWLDataProperty dataProperty = df
 				.getOWLDataProperty(IRI.create(iri + "#" + opString));
 
@@ -344,13 +369,43 @@ public class SemanticService {
 		
 		AddAxiom addAxiomChange = new AddAxiom(o, assertion);
 		System.out.println("Reasoner consistent? "+reasoner.isConsistent());
-		m.applyChange(addAxiomChange);
 		
+		m.applyChange(addAxiomChange);
 		reasoner.flush();
 		
 		System.out.println("Reasoner consistent? "+reasoner.isConsistent());
+		if (!reasoner.isConsistent()){
+			RemoveAxiom removeAxiom = new RemoveAxiom(o,assertion);
+			m.applyChange(removeAxiom);
+			System.out.println(addAxiomChange);
+			throw new Exception("Axiom ("+sString+" "+opString+" "+value+") würde zu einer Inkonsitenz in der Ontologie führen");
+		} else{
+			m.saveOntology(o);
+		}
+	}
+	
+	public void saveIndividual(String sString, String cString)
+			throws Exception {
 		
-		m.saveOntology(o);
+		OWLIndividual subject = df.getOWLNamedIndividual(IRI.create(iri + "#" + sString));
+				
+		OWLClass owlclass = df.getOWLClass(IRI.create(iri + "#" + cString));
+		OWLAxiom assertion = df.getOWLClassAssertionAxiom(owlclass, subject);
+		
+		AddAxiom addAxiomChange = new AddAxiom(o, assertion);
 		System.out.println("Reasoner consistent? "+reasoner.isConsistent());
+		
+		m.applyChange(addAxiomChange);
+		reasoner.flush();
+		
+		System.out.println("Reasoner consistent? "+reasoner.isConsistent());
+		if (!reasoner.isConsistent()){
+			RemoveAxiom removeAxiom = new RemoveAxiom(o,assertion);
+			m.applyChange(removeAxiom);
+			System.out.println(addAxiomChange);
+			throw new Exception("Axiom ("+sString+" "+cString+") würde zu einer Inkonsitenz in der Ontologie führen");
+		} else{
+			m.saveOntology(o);
+		}
 	}
 }

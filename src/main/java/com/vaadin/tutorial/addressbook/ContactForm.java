@@ -8,6 +8,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.event.ShortcutAction;
+import com.vaadin.server.Page;
 import com.vaadin.tutorial.addressbook.backend.Contact;
 import com.vaadin.tutorial.addressbook.backend.Mitarbeiter;
 import com.vaadin.tutorial.addressbook.backend.SemanticService;
@@ -29,18 +30,18 @@ public class ContactForm extends FormLayout {
 
     Button save = new Button("Save", this::save);
     Button cancel = new Button("Cancel", this::cancel);
-    Button addRow = new Button("Zeile hinzufügen",this::addRow);
-    TextField firstName = new TextField("First name");
-    TextField lastName = new TextField("Last name");
-    TextField phone = new TextField("Phone");
+    Button addRow = new Button("Object Property hinzufügen",this::addRow);
+    TextField name = new TextField("Name");
+    TextField beschreibung = new TextField("Beschreibung");
     TextField email = new TextField("Email");
-    DateField birthDate = new DateField("Birth date");
-    ComboBox box = new ComboBox("Wohnort");
+    TextField gehalt = new TextField("Gehalt");
+    TextField erfahrungsjahre = new TextField("Erfahrungsjahre");
+    
     
     EmployeeRow[] emps = new EmployeeRow[10];
     int rows = 0;
     
-    Tree tree = new Tree();
+    
 
     SemanticService semService = SemanticService.createDemoService();
     
@@ -100,15 +101,6 @@ public class ContactForm extends FormLayout {
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         setVisible(false);
         
-        List<String> list = new LinkedList<String>();
-        
-    	list.add("Amstetten");
-    	list.add("Linz");
-    	list.add("Wien");
-    	
-    	for (int i=0; i<list.size();i++){
-    		box.addItem(list.get(i));
-    	}
     }
 
     private void buildLayout() {
@@ -117,32 +109,37 @@ public class ContactForm extends FormLayout {
 
         HorizontalLayout actions = new HorizontalLayout(save, cancel, addRow);
         actions.setSpacing(true);
-        
-		addComponents(tree, actions, firstName, lastName, phone, email, birthDate, box);
-//		for (int i = 0; i < rows && i < 10; i++) {
-//			if (emps[i] == null) 
-//				emps[i] = new EmployeeRow("new");
-//			addComponent(emps[i]);
-//		}
+
+		addComponents(actions, name, beschreibung, email, gehalt, erfahrungsjahre);
     }
 
 
     public void save(Button.ClickEvent event) {
         try {
-            // Commit the fields from UI to DAO
+
             formFieldBindings.commit();
+            
+            getUI().semService.saveIndividual(this.name.getValue(), "Mitarbeiter");
+            getUI().semService.saveDataProperty(this.name.getValue(), "Beschreibung", this.beschreibung.getValue());
+            getUI().semService.saveDataProperty(this.name.getValue(), "hatEmailAdresse", this.email.getValue());
+            getUI().semService.saveDataProperty(this.name.getValue(), "Gehalt", this.gehalt.getValue());
+            getUI().semService.saveDataProperty(this.name.getValue(), "Erfahrungsjahre", this.erfahrungsjahre.getValue());
 
-            // Save DAO to backend with direct synchronous service API
-            getUI().semService.saveMA(mitarbeiter);
-
-            String msg = String.format("Saved '%s %s'.",
-                    mitarbeiter.getName(),
-                    mitarbeiter.getBeschreibung());
+            String msg = String.format("'%s %s' gespeichert.",
+            		this.name.getValue(),
+            		this.beschreibung.getValue());
             Notification.show(msg,Type.TRAY_NOTIFICATION);
             getUI().refreshContacts();
         } catch (FieldGroup.CommitException e) {
-            // Validation exceptions could be shown here
+            
+        } catch (Exception e){
+        	new Notification("Fehler: ",
+        		    e.getMessage(),
+        		    Notification.TYPE_ERROR_MESSAGE, true)
+        		    .show(Page.getCurrent());
         }
+        
+        
     }
 
     public void cancel(Button.ClickEvent event) {
@@ -157,7 +154,7 @@ public class ContactForm extends FormLayout {
         if(mitarbeiter != null) {
             // Bind the properties of the contact POJO to fiels in this form
             formFieldBindings = BeanFieldGroup.bindFieldsBuffered(mitarbeiter, this);
-            firstName.focus();
+            name.focus();
         }
         setVisible(mitarbeiter != null);
     }
@@ -177,5 +174,7 @@ public class ContactForm extends FormLayout {
         return (AddressbookUI) super.getUI();
     }
 
+    
+    
 
 }
