@@ -3,11 +3,14 @@ package com.vaadin.tutorial.addressbook;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.tutorial.addressbook.backend.Contact;
 import com.vaadin.tutorial.addressbook.backend.Mitarbeiter;
+import com.vaadin.tutorial.addressbook.backend.SemanticService;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.themes.ValoTheme;
@@ -26,6 +29,7 @@ public class ContactForm extends FormLayout {
 
     Button save = new Button("Save", this::save);
     Button cancel = new Button("Cancel", this::cancel);
+    Button addRow = new Button("Zeile hinzufügen",this::addRow);
     TextField firstName = new TextField("First name");
     TextField lastName = new TextField("Last name");
     TextField phone = new TextField("Phone");
@@ -34,10 +38,46 @@ public class ContactForm extends FormLayout {
     ComboBox box = new ComboBox("Wohnort");
     Tree tree = new Tree();
 
+    SemanticService semService = SemanticService.createDemoService();
+    
     Mitarbeiter mitarbeiter;
 
     // Easily bind forms to beans and manage validation and buffering
     BeanFieldGroup<Mitarbeiter> formFieldBindings;
+
+    
+    class EmplyoeeRow extends CustomComponent {
+        public EmplyoeeRow(String property) {
+            // A layout structure used for composition
+            Panel panel = new Panel("neues Property");
+            HorizontalLayout panelContent = new HorizontalLayout(); 
+            
+            panel.setContent(new VerticalLayout());
+            
+            
+            // Compose from multiple components
+            ComboBox select = new ComboBox("Beziehung");
+            try {
+				select.addItems(SemanticService.getObjectProperties());
+			} catch (UnsupportedOperationException e) {
+				e.printStackTrace();
+			} catch (OWLOntologyCreationException e) {
+				e.printStackTrace();
+			}
+            addComponent(select);
+            Label label = new Label(property);
+            label.setSizeUndefined(); // Shrink
+            
+
+            // Set the size as undefined at all levels
+            panel.getContent().setSizeUndefined();
+            panel.setSizeUndefined();
+            setSizeUndefined();
+
+            // The composition root MUST be set
+            setCompositionRoot(panel);
+        }
+    }
 
     public ContactForm() {
         configureComponents();
@@ -69,10 +109,11 @@ public class ContactForm extends FormLayout {
         setSizeUndefined();
         setMargin(true);
 
-        HorizontalLayout actions = new HorizontalLayout(save, cancel);
+        HorizontalLayout actions = new HorizontalLayout(save, cancel, addRow);
         actions.setSpacing(true);
         
 		addComponents(tree, actions, firstName, lastName, phone, email, birthDate, box);
+		addComponent(new EmplyoeeRow("nachricht"));
     }
 
     /* Use any JVM language.
@@ -120,10 +161,16 @@ public class ContactForm extends FormLayout {
         }
         setVisible(mitarbeiter != null);
     }
+    
+    public void addRow(Button.ClickEvent event) {
+		
+    }
+    
 
     @Override
     public AddressbookUI getUI() {
         return (AddressbookUI) super.getUI();
     }
+
 
 }

@@ -13,6 +13,7 @@ import org.semanticweb.owlapi.model.OWLException;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
@@ -46,6 +47,8 @@ public class SemanticService {
 	static List<Individual> lnames;
 
 	private static SemanticService instance;
+	private static OWLReasoner reasoner;
+	private static OWLOntology o;
 
 	public static void main(String[] args) throws OWLException, IOException {
 		createDemoService();
@@ -62,6 +65,9 @@ public class SemanticService {
 														"<http://www.semanticweb.org/semanticOrg#hatBereich>")){
 			System.out.println(s);
 		}
+		
+		System.out.println("Print object properties...");
+		System.out.println(getObjectProperties());
 		
 		
 		
@@ -132,22 +138,34 @@ public class SemanticService {
 		individuals.put(entry.getId(), entry);
 		System.out.println(individuals.size());
 	}
+	
+	public static List<String> getObjectProperties() throws OWLOntologyCreationException {
+		
+		List<String> list = new LinkedList<String>();
+		
+		for ( OWLObjectProperty it : o.getObjectPropertiesInSignature(true)){
+			
+			list.add(it.getIRI().toString().substring(it.getIRI().toString().indexOf("#")+1));
+		}
+		return list;
+	}
 
 	public static void loadOntology() throws OWLOntologyCreationException {
 		// System.out.println(VaadinService.getCurrent().getBaseDirectory().toString());
 
 		OWLOntologyManager m = OWLManager.createOWLOntologyManager();
+		
 
 		// String file = "/Mini2_OWL.owl";
-		//String file = "C:\\Users\\Peter\\Dropbox\\SemTech SS15\\Miniprojekt 2\\Mini2_OWL.owl";
-		String file = "/Users/Daniel/Dropbox/SemTech SS15/Miniprojekt 2/Mini2_OWL.owl";
+		String file = "C:\\Users\\Peter\\Dropbox\\SemTech SS15\\Miniprojekt 2\\Mini2_OWL.owl";
+		//String file = "/Users/Daniel/Dropbox/SemTech SS15/Miniprojekt 2/Mini2_OWL.owl";
 		
-		OWLOntology o = m.loadOntologyFromOntologyDocument(new File(file));
+		o = m.loadOntologyFromOntologyDocument(new File(file));
 
-		OWLReasoner reasoner = new Reasoner(o);
+		reasoner = new Reasoner(o);
 		System.out.println("Reasoner-Name: " + reasoner.getReasonerName());
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-
+		
 		OWLDataFactory factory = m.getOWLDataFactory();
 		OWLClass Thing = factory.getOWLClass(IRI
 				.create("http://www.w3.org/2002/07/owl#Thing"));

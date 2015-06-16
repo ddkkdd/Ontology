@@ -34,7 +34,7 @@ import org.semanticweb.owlapi.model.OWLIndividual;
  * By default, a new UI instance is automatically created when the page is loaded. To reuse
  * the same instance, add @PreserveOnRefresh.
  */
-@Title("Addressbook")
+@Title("Semantic Organization")
 @Theme("valo")
 public class AddressbookUI extends UI {
 
