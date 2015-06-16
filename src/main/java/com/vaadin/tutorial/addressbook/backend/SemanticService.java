@@ -5,9 +5,12 @@ import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.collections.map.LinkedMap;
 import org.semanticweb.HermiT.Reasoner;
 import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
 import org.semanticweb.owlapi.model.OWLException;
 import org.semanticweb.owlapi.model.OWLIndividual;
@@ -18,6 +21,7 @@ import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.reasoner.InferenceType;
 import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
@@ -43,34 +47,43 @@ import java.util.logging.Logger;
 public class SemanticService {
 
 	public static String DEFAULT_NAMESPACE = "http://www.semanticweb.org/semanticOrg";
+	public static String iri = DEFAULT_NAMESPACE;
 
 	static List<Individual> lnames;
 
 	private static SemanticService instance;
 	private static OWLReasoner reasoner;
 	private static OWLOntology o;
+	private static OWLOntologyManager m;
+	private static OWLDataFactory df = OWLManager.getOWLDataFactory();
 
 	public static void main(String[] args) throws OWLException, IOException {
 		createDemoService();
-		
-//		for (Individual it : instance.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Organisationseinheit>")){
-//			System.out.println(it.toString());
-//		}
-		
-		for (Individual it : instance.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Sparte>")){
+
+		// for (Individual it :
+		// instance.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Organisationseinheit>")){
+		// System.out.println(it.toString());
+		// }
+
+		for (Individual it : instance
+				.getIndividualByClass("<http://www.semanticweb.org/semanticOrg#Sparte>")) {
 			System.out.println(it.toString());
 		}
-		
-		for (String s : instance.getIndividualByProperty("<http://www.semanticweb.org/semanticOrg#Southern_Europe>", 
-														"<http://www.semanticweb.org/semanticOrg#hatBereich>")){
+
+		for (String s : instance.getIndividualByProperty(
+				"<http://www.semanticweb.org/semanticOrg#Southern_Europe>",
+				"<http://www.semanticweb.org/semanticOrg#hatBereich>")) {
 			System.out.println(s);
 		}
-		
+
 		System.out.println("Print object properties...");
 		System.out.println(getObjectProperties());
+
+//		instance.saveObjectProperty("Helmberger_Peter", "istVorgesetzterVon", "Burgstaller_Andreas");
+//		instance.saveObjectProperty("Helmberger_Peter", "istVorgesetzterVon", "sepp");
 		
-		
-		
+		instance.saveDataProperty("Helmberger_Peter", "rErfahrungsjahre", "12");
+		System.out.println("saved...");
 	}
 
 	public static SemanticService createDemoService() {
@@ -95,16 +108,13 @@ public class SemanticService {
 		ArrayList<Individual> arrayList = new ArrayList<Individual>();
 		for (Individual i : individuals.values()) {
 			try {
-				boolean passesFilter = (stringFilter == null || stringFilter
-						.isEmpty())
-						|| i.toString().toLowerCase()
-								.contains(stringFilter.toLowerCase());
+				boolean passesFilter = (stringFilter == null || stringFilter.isEmpty())
+						|| i.toString().toLowerCase().contains(stringFilter.toLowerCase());
 				if (passesFilter) {
 					arrayList.add(i.clone());
 				}
 			} catch (CloneNotSupportedException ex) {
-				Logger.getLogger(SemanticService.class.getName()).log(
-						Level.SEVERE, null, ex);
+				Logger.getLogger(SemanticService.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
 		Collections.sort(arrayList, new Comparator<Individual>() {
@@ -138,14 +148,14 @@ public class SemanticService {
 		individuals.put(entry.getId(), entry);
 		System.out.println(individuals.size());
 	}
-	
+
 	public static List<String> getObjectProperties() throws OWLOntologyCreationException {
-		
+
 		List<String> list = new LinkedList<String>();
-		
-		for ( OWLObjectProperty it : o.getObjectPropertiesInSignature(true)){
-			
-			list.add(it.getIRI().toString().substring(it.getIRI().toString().indexOf("#")+1));
+
+		for (OWLObjectProperty it : o.getObjectPropertiesInSignature(true)) {
+
+			list.add(it.getIRI().toString().substring(it.getIRI().toString().indexOf("#") + 1));
 		}
 		return list;
 	}
@@ -153,26 +163,23 @@ public class SemanticService {
 	public static void loadOntology() throws OWLOntologyCreationException {
 		// System.out.println(VaadinService.getCurrent().getBaseDirectory().toString());
 
-		OWLOntologyManager m = OWLManager.createOWLOntologyManager();
-		
+		m = OWLManager.createOWLOntologyManager();
 
 		// String file = "/Mini2_OWL.owl";
-		//String file = "C:\\Users\\Peter\\Dropbox\\SemTech SS15\\Miniprojekt 2\\Mini2_OWL.owl";
-		String file = "/Users/Daniel/Dropbox/SemTech SS15/Miniprojekt 2/Mini2_OWL.owl";
-		
+		String file = "C:\\Users\\Peter\\Dropbox\\SemTech SS15\\Miniprojekt 2\\Mini2_OWL.owl";
+		// String file =
+		// "/Users/Daniel/Dropbox/SemTech SS15/Miniprojekt 2/Mini2_OWL.owl";
+
 		o = m.loadOntologyFromOntologyDocument(new File(file));
 
 		reasoner = new Reasoner(o);
 		System.out.println("Reasoner-Name: " + reasoner.getReasonerName());
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-		
-		OWLDataFactory factory = m.getOWLDataFactory();
-		OWLClass Thing = factory.getOWLClass(IRI
-				.create("http://www.w3.org/2002/07/owl#Thing"));
-		Set<OWLNamedIndividual> individuals = reasoner.getInstances(Thing,
-				false).getFlattened();
 
-		
+		OWLDataFactory factory = m.getOWLDataFactory();
+		OWLClass Thing = factory.getOWLClass(IRI.create("http://www.w3.org/2002/07/owl#Thing"));
+		Set<OWLNamedIndividual> individuals = reasoner.getInstances(Thing, false).getFlattened();
+
 		System.out.println("Anzahl: " + individuals.size());
 		long j = 0;
 		boolean isMA = false;
@@ -187,13 +194,11 @@ public class SemanticService {
 
 			Map<OWLDataPropertyExpression, Set<OWLLiteral>> dataProperties = ind
 					.getDataPropertyValues(o);
-			for (Entry<OWLDataPropertyExpression, Set<OWLLiteral>> d : dataProperties
-					.entrySet()) {
+			for (Entry<OWLDataPropertyExpression, Set<OWLLiteral>> d : dataProperties.entrySet()) {
 				if (d.getKey() != null) {
 					for (OWLLiteral s : d.getValue()) {
 
-						dpm.add(new OWLConcept(d.getKey().toString(), s
-								.getLiteral()));
+						dpm.add(new OWLConcept(d.getKey().toString(), s.getLiteral()));
 						// System.out.println(d.getKey().toString()+"  ---  "+s.getLiteral());
 					}
 				}
@@ -204,8 +209,7 @@ public class SemanticService {
 					.entrySet()) {
 				if (d.getKey() != null) {
 					for (OWLIndividual s : d.getValue()) {
-						opm.add(new OWLConcept(d.getKey().toString(), s
-								.toString()));
+						opm.add(new OWLConcept(d.getKey().toString(), s.toString()));
 						// System.out.println(d.getKey().toString()+"  ---  "+s.toString());
 
 					}
@@ -221,7 +225,9 @@ public class SemanticService {
 				for (OWLClass c : s) {
 					classes.add(c.toString());
 
-					isMA = isMA | c.toString().equals("<http://www.semanticweb.org/semanticOrg#Mitarbeiter>");
+					isMA = isMA
+							| c.toString().equals(
+									"<http://www.semanticweb.org/semanticOrg#Mitarbeiter>");
 
 				}
 			}
@@ -240,21 +246,18 @@ public class SemanticService {
 	}
 
 	public synchronized List<Mitarbeiter> findAllMA(String stringFilter) {
-		
+
 		ArrayList<Mitarbeiter> arrayList = new ArrayList<Mitarbeiter>();
 		for (Mitarbeiter i : mitarbeiter.values()) {
 			System.out.println(i);
 			try {
-				boolean passesFilter = (stringFilter == null || stringFilter
-						.isEmpty())
-						|| i.toString().toLowerCase()
-								.contains(stringFilter.toLowerCase());
+				boolean passesFilter = (stringFilter == null || stringFilter.isEmpty())
+						|| i.toString().toLowerCase().contains(stringFilter.toLowerCase());
 				if (passesFilter) {
 					arrayList.add(i.clone());
 				}
 			} catch (CloneNotSupportedException ex) {
-				Logger.getLogger(SemanticService.class.getName()).log(
-						Level.SEVERE, null, ex);
+				Logger.getLogger(SemanticService.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
 		Collections.sort(arrayList, new Comparator<Mitarbeiter>() {
@@ -299,21 +302,48 @@ public class SemanticService {
 		}
 		return classIndividuals;
 	}
-	
+
 	public List<String> getIndividualByProperty(String iri, String pname) {
 		// private HashMap<Long, Individual> individuals = new HashMap<>();
-		//List<Individual> pIndividuals = new ArrayList<>();
-		
-		for (Individual i : individuals.values()){
-			if (i.getIndividualName().equals(iri)){
+		// List<Individual> pIndividuals = new ArrayList<>();
+
+		for (Individual i : individuals.values()) {
+			if (i.getIndividualName().equals(iri)) {
 				return i.getIndividualByProperty(pname);
 			}
-		}	
-		return null;	
+		}
+		return null;
+	}
+
+	public void saveObjectProperty(String sString, String opString, String oString)
+			throws OWLOntologyStorageException {
+		OWLIndividual subject = df.getOWLNamedIndividual(IRI.create(iri + "#" + sString));
+		OWLIndividual object = df.getOWLNamedIndividual(IRI.create(iri + "#" + oString));
+
+		OWLObjectProperty objectProperty = df
+				.getOWLObjectProperty(IRI.create(iri + "#" + opString));
+
+		OWLAxiom assertion = df.getOWLObjectPropertyAssertionAxiom(objectProperty, subject, object);
+
+		AddAxiom addAxiomChange = new AddAxiom(o, assertion);
+		m.applyChange(addAxiomChange);
+		m.saveOntology(o);
 	}
 	
-	public void saveObjectProperty(String individual, String objectproperty, String object){
+	public void saveDataProperty(String sString, String opString, String value)
+			throws OWLOntologyStorageException {
+		OWLIndividual subject = df.getOWLNamedIndividual(IRI.create(iri + "#" + sString));
 		
+		OWLLiteral literal = df.getOWLLiteral(value);
 		
+
+		OWLDataProperty dataProperty = df
+				.getOWLDataProperty(IRI.create(iri + "#" + opString));
+
+		OWLAxiom assertion = df.getOWLDataPropertyAssertionAxiom(dataProperty, subject, literal);
+		
+		AddAxiom addAxiomChange = new AddAxiom(o, assertion);
+		m.applyChange(addAxiomChange);
+		m.saveOntology(o);
 	}
 }
