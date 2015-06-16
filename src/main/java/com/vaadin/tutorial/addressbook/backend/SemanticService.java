@@ -82,7 +82,7 @@ public class SemanticService {
 //		instance.saveObjectProperty("Helmberger_Peter", "istVorgesetzterVon", "Burgstaller_Andreas");
 //		instance.saveObjectProperty("Helmberger_Peter", "istVorgesetzterVon", "sepp");
 		
-		instance.saveDataProperty("Helmberger_Peter", "rErfahrungsjahre", "12");
+		instance.saveDataProperty("Helmberger_Peter", "Erfahrungsjahre", "12");
 		System.out.println("saved...");
 	}
 
@@ -343,7 +343,14 @@ public class SemanticService {
 		OWLAxiom assertion = df.getOWLDataPropertyAssertionAxiom(dataProperty, subject, literal);
 		
 		AddAxiom addAxiomChange = new AddAxiom(o, assertion);
+		System.out.println("Reasoner consistent? "+reasoner.isConsistent());
 		m.applyChange(addAxiomChange);
+		
+		reasoner.flush();
+		
+		System.out.println("Reasoner consistent? "+reasoner.isConsistent());
+		
 		m.saveOntology(o);
+		System.out.println("Reasoner consistent? "+reasoner.isConsistent());
 	}
 }
