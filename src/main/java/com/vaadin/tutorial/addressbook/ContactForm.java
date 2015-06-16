@@ -36,6 +36,10 @@ public class ContactForm extends FormLayout {
     TextField email = new TextField("Email");
     DateField birthDate = new DateField("Birth date");
     ComboBox box = new ComboBox("Wohnort");
+    
+    EmployeeRow[] emps = new EmployeeRow[10];
+    int rows = 0;
+    
     Tree tree = new Tree();
 
     SemanticService semService = SemanticService.createDemoService();
@@ -46,15 +50,14 @@ public class ContactForm extends FormLayout {
     BeanFieldGroup<Mitarbeiter> formFieldBindings;
 
     
-    class EmplyoeeRow extends CustomComponent {
-        public EmplyoeeRow(String property) {
+    class EmployeeRow extends CustomComponent {
+        public EmployeeRow(String property) {
             // A layout structure used for composition
             Panel panel = new Panel("neues Property");
-            HorizontalLayout panelContent = new HorizontalLayout(); 
-            
-            panel.setContent(new VerticalLayout());
-            
-            
+            HorizontalLayout hl = new HorizontalLayout();
+            HorizontalLayout vl = new HorizontalLayout();
+            panel.setContent(vl);
+
             // Compose from multiple components
             ComboBox select = new ComboBox("Beziehung");
             try {
@@ -64,11 +67,14 @@ public class ContactForm extends FormLayout {
 			} catch (OWLOntologyCreationException e) {
 				e.printStackTrace();
 			}
-            addComponent(select);
-            Label label = new Label(property);
-            label.setSizeUndefined(); // Shrink
             
-
+            
+            
+            hl.addComponent(select);
+            TextField object = new TextField("Objekt");
+            hl.addComponent(object);
+            
+            vl.addComponent(hl);
             // Set the size as undefined at all levels
             panel.getContent().setSizeUndefined();
             panel.setSizeUndefined();
@@ -113,20 +119,14 @@ public class ContactForm extends FormLayout {
         actions.setSpacing(true);
         
 		addComponents(tree, actions, firstName, lastName, phone, email, birthDate, box);
-		addComponent(new EmplyoeeRow("nachricht"));
+//		for (int i = 0; i < rows && i < 10; i++) {
+//			if (emps[i] == null) 
+//				emps[i] = new EmployeeRow("new");
+//			addComponent(emps[i]);
+//		}
     }
 
-    /* Use any JVM language.
-     *
-     * Vaadin supports all languages supported by Java Virtual Machine 1.6+.
-     * This allows you to program user interface in Java 8, Scala, Groovy or any other
-     * language you choose.
-     * The new languages give you very powerful tools for organizing your code
-     * as you choose. For example, you can implement the listener methods in your
-     * compositions or in separate controller classes and receive
-     * to various Vaadin component events, like button clicks. Or keep it simple
-     * and compact with Lambda expressions.
-     */
+
     public void save(Button.ClickEvent event) {
         try {
             // Commit the fields from UI to DAO
@@ -163,7 +163,12 @@ public class ContactForm extends FormLayout {
     }
     
     public void addRow(Button.ClickEvent event) {
-		
+    	rows++;
+    	for (int i = 0; i < rows && i < 10; i++) {
+			if (emps[i] == null) 
+				emps[i] = new EmployeeRow("new");
+			addComponent(emps[i]);
+		}
     }
     
 

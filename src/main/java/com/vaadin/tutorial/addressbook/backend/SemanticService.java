@@ -311,4 +311,9 @@ public class SemanticService {
 		}	
 		return null;	
 	}
+	
+	public void saveObjectProperty(String individual, String objectproperty, String object){
+		
+		
+	}
 }
