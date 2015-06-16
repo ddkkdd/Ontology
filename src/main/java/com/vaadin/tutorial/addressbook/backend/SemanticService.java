@@ -156,6 +156,11 @@ public class SemanticService {
 		individuals.put(entry.getId(), entry);
 		System.out.println(individuals.size());
 	}
+	
+	public synchronized void clear() {
+		individuals = new HashMap<>();
+		mitarbeiter = new HashMap<>();
+	}
 
 	public static List<String> getObjectProperties() throws OWLOntologyCreationException {
 
@@ -178,16 +183,21 @@ public class SemanticService {
 		// String file =
 		// "/Users/Daniel/Dropbox/SemTech SS15/Miniprojekt 2/Mini2_OWL.owl";
 
+		instance.clear();
 		o = m.loadOntologyFromOntologyDocument(new File(file));
 
 		reasoner = new Reasoner(o);
 		System.out.println("Reasoner-Name: " + reasoner.getReasonerName());
 		reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 
+		
 		OWLDataFactory factory = m.getOWLDataFactory();
 		OWLClass Thing = factory.getOWLClass(IRI.create("http://www.w3.org/2002/07/owl#Thing"));
 		Set<OWLNamedIndividual> individuals = reasoner.getInstances(Thing, false).getFlattened();
 
+		
+		
+		
 		System.out.println("Anzahl: " + individuals.size());
 		long j = 0;
 		boolean isMA = false;
@@ -241,9 +251,8 @@ public class SemanticService {
 			}
 
 			Individual i = new Individual(j, ind.toString(), dpm, opm, classes);
-
+			
 			if (isMA) {
-				System.out.println(i.createMitarbeiter().toString());
 				instance.saveMA(i.createMitarbeiter());
 			}
 
@@ -254,7 +263,14 @@ public class SemanticService {
 	}
 
 	public synchronized List<Mitarbeiter> findAllMA(String stringFilter) {
-
+		//pehe
+		try {
+			loadOntology();
+		} catch (OWLOntologyCreationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		ArrayList<Mitarbeiter> arrayList = new ArrayList<Mitarbeiter>();
 		for (Mitarbeiter i : mitarbeiter.values()) {
 			System.out.println(i);

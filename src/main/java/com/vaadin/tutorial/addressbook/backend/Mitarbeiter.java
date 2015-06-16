@@ -20,9 +20,9 @@ public class Mitarbeiter implements Serializable, Cloneable {
     private String Name = "";
     private String Beschreibung= "";
     private String Gehalt = "";
-    private int Erfahrungsjahre = 0;
-    private Date Geburtsdatum;
-    private String Eintrittsdatum;
+    private String Erfahrungsjahre = "";
+    private String Email = "";
+    
 
     
     
@@ -62,36 +62,7 @@ public class Mitarbeiter implements Serializable, Cloneable {
 		Gehalt = gehalt;
 	}
 
-	public int getErfahrungsjahre() {
-		return Erfahrungsjahre;
-	}
-
-	public void setErfahrungsjahre(int erfahrungsjahre) {
-		Erfahrungsjahre = erfahrungsjahre;
-	}
-
-	public Date getGeburtsdatum() {
-		return Geburtsdatum;
-	}
-
-	public void setGeburtsdatum(Date geburtsdatum) {
-		Geburtsdatum = geburtsdatum;
-	}
-
-	@Override
-	public String toString() {
-		return "Mitarbeiter [id=" + id + ", Name=" + Name + ", Gehalt="
-				+ Gehalt + ", Erfahrungsjahre=" + Erfahrungsjahre
-				+ ", Geburtsdatum=" + Geburtsdatum + "]";
-	}
-
-	public String getEintrittsdatum() {
-		return Eintrittsdatum;
-	}
-
-	public void setEintrittsdatum(String eintrittsdatum) {
-		Eintrittsdatum = eintrittsdatum;
-	}
+	
 
 	public String getBeschreibung() {
 		return Beschreibung;
@@ -99,6 +70,22 @@ public class Mitarbeiter implements Serializable, Cloneable {
 
 	public void setBeschreibung(String beschreibung) {
 		Beschreibung = beschreibung;
+	}
+
+	public String getEmail() {
+		return Email;
+	}
+
+	public void setEmail(String email) {
+		Email = email;
+	}
+
+	public String getErfahrungsjahre() {
+		return Erfahrungsjahre;
+	}
+
+	public void setErfahrungsjahre(String erfahrungsjahre) {
+		Erfahrungsjahre = erfahrungsjahre;
 	}
 
 }

@@ -89,11 +89,13 @@ public class Individual implements Serializable, Cloneable {
 
 		Mitarbeiter m = new Mitarbeiter();
 
-		m.setName(individualName.substring(individualName.lastIndexOf("#")));
-
-		m.setEintrittsdatum(getPropertyValue("<http://www.semanticweb.org/semanticOrg#Erfahrungsjahre>"));
+		m.setName(individualName.substring(individualName.lastIndexOf("#")+1,individualName.length()-1));
+		
+		
 		m.setBeschreibung(getPropertyValue("<http://www.semanticweb.org/semanticOrg#Beschreibung>"));
 		m.setGehalt(getPropertyValue("<http://www.semanticweb.org/semanticOrg#Gehalt>"));
+		m.setEmail(getPropertyValue("<http://www.semanticweb.org/semanticOrg#hatEmailAdresse>"));
+		m.setErfahrungsjahre(getPropertyValue("<http://www.semanticweb.org/semanticOrg#Erfahrungsjahre>"));
 		m.setId(id);
 		return m;
 	}

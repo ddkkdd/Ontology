@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
+import com.vaadin.data.Validator.InvalidValueException;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.server.Page;
+import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.tutorial.addressbook.backend.Contact;
 import com.vaadin.tutorial.addressbook.backend.Mitarbeiter;
 import com.vaadin.tutorial.addressbook.backend.SemanticService;
@@ -52,6 +54,9 @@ public class ContactForm extends FormLayout {
 
     
     class EmployeeRow extends CustomComponent {
+    	private TextField objekt;
+    	private ComboBox select;
+    	
         public EmployeeRow(String property) {
             // A layout structure used for composition
             Panel panel = new Panel("neues Property");
@@ -60,7 +65,7 @@ public class ContactForm extends FormLayout {
             panel.setContent(vl);
 
             // Compose from multiple components
-            ComboBox select = new ComboBox("Beziehung");
+            select = new ComboBox("Beziehung");
             try {
 				select.addItems(SemanticService.getObjectProperties());
 			} catch (UnsupportedOperationException e) {
@@ -70,16 +75,16 @@ public class ContactForm extends FormLayout {
 			}
             
             
-            
             hl.addComponent(select);
-            TextField object = new TextField("Objekt");
-            hl.addComponent(object);
+            objekt = new TextField("Objekt");
+            hl.addComponent(objekt);
             
             vl.addComponent(hl);
             // Set the size as undefined at all levels
             panel.getContent().setSizeUndefined();
             panel.setSizeUndefined();
             setSizeUndefined();
+            
 
             // The composition root MUST be set
             setCompositionRoot(panel);
@@ -101,22 +106,37 @@ public class ContactForm extends FormLayout {
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         setVisible(false);
         
+        
     }
 
     private void buildLayout() {
         setSizeUndefined();
-        setMargin(true);
+        
+        
+        
+        //setMargin(new MarginInfo(true, true, true, true));
 
         HorizontalLayout actions = new HorizontalLayout(save, cancel, addRow);
         actions.setSpacing(true);
-
+        
+        name.setRequired(true);
+        beschreibung.setRequired(true);
+        email.setRequired(true);
+        gehalt.setRequired(true);
+        erfahrungsjahre.setRequired(true);
+        
 		addComponents(actions, name, beschreibung, email, gehalt, erfahrungsjahre);
     }
 
 
     public void save(Button.ClickEvent event) {
         try {
-
+        	name.commit();
+        	beschreibung.commit();
+        	email.commit();
+        	gehalt.commit();
+        	erfahrungsjahre.commit();
+        	
             formFieldBindings.commit();
             
             getUI().semService.saveIndividual(this.name.getValue(), "Mitarbeiter");
@@ -124,6 +144,10 @@ public class ContactForm extends FormLayout {
             getUI().semService.saveDataProperty(this.name.getValue(), "hatEmailAdresse", this.email.getValue());
             getUI().semService.saveDataProperty(this.name.getValue(), "Gehalt", this.gehalt.getValue());
             getUI().semService.saveDataProperty(this.name.getValue(), "Erfahrungsjahre", this.erfahrungsjahre.getValue());
+            
+            for (int i = 0; i < rows && i < 10; i++) {
+            	getUI().semService.saveObjectProperty(this.name.getValue(),(String)emps[i].select.getValue(),emps[i].objekt.getValue());
+            }
 
             String msg = String.format("'%s %s' gespeichert.",
             		this.name.getValue(),
@@ -131,6 +155,13 @@ public class ContactForm extends FormLayout {
             Notification.show(msg,Type.TRAY_NOTIFICATION);
             getUI().refreshContacts();
         } catch (FieldGroup.CommitException e) {
+        
+        } catch (InvalidValueException  e) {
+        	new Notification("Alle Felder müssen befüllt sein",
+        			
+        			"",
+        		    Notification.TYPE_ERROR_MESSAGE, true)
+        		    .show(Page.getCurrent());
             
         } catch (Exception e){
         	new Notification("Fehler: ",
